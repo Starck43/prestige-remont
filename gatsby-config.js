@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Сайт Престиж-ремонт43`,
-    description: `Строительные услуги`,
+    title: `Престиж-ремонт`,
+    description: `Строительно-монтажные и отделочные работы`,
     author: `@iStarck`,
   },
   plugins: [
@@ -19,7 +19,12 @@ module.exports = {
     `gatsby-plugin-smoothscroll`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    //`gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/*`],
+      },
+    },
       /**
        * First up is the WordPress source plugin that connects Gatsby
        * to your WordPress site.
@@ -38,7 +43,22 @@ module.exports = {
           Menu: {
             exclude: true,
           },
+          MenuItem: {
+            exclude: true,
+          },
           User: {
+            exclude: true,
+          },
+          UserRole: {
+            exclude: true,
+          },
+          PostFormat: {
+            exclude: true,
+          },
+          Comment: {
+            exclude: true,
+          },
+          Tag: {
             exclude: true,
           },
         },
@@ -48,7 +68,7 @@ module.exports = {
           timeout: 60000,
         },
         html: {
-          useGatsbyImage: false,
+          //useGatsbyImage: false,
           createStaticFiles: false,
         },
         develop: {
