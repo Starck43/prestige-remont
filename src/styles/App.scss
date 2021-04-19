@@ -1,0 +1,31 @@
+@import "~bootstrap/scss/bootstrap";
+
+.gatsby-focus-wrapper{
+	display: flex;
+	flex-direction: column;
+	.nav-header{
+		flex: auto;
+	}
+	main{
+		flex: 1;
+	}
+}
+
+.main-button {
+	padding: calc(0.667em + 2px) calc(1.333em + 2px);
+	font-size: 1.2em;
+	border-radius: 9999px;
+	border: none;
+	background-color: #000;
+	transition: all 200ms ease;
+	&:hover{
+		color: #000;
+		background-color: orange;
+	}
+}
+
+.flex-centered{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

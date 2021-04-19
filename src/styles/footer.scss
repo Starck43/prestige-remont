@@ -1,0 +1,50 @@
+@import "./vars";
+
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8vh 5vw;
+  background-color: $bg-color;
+
+  h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    overflow: hidden;
+    @include media(">=phone", "<lgphone") {
+      display: none;
+    }
+    @include media(">=lgphone", "<tablet") {
+      font-size: 14px;
+    }
+    @include media(">=tablet", "<desktop") {
+      font-size: 1.2rem;
+    }
+  }
+  .email-link {
+    font-size: 1.5rem;
+    color: orange;
+  }
+  .social-icons {
+    margin-top: 1.5rem;
+    img {
+      height: 2rem;
+      margin: 1rem;
+    }
+  }
+  span {
+    margin-top: 2vw;
+  }
+}
+
+#devCompany {
+  margin: 2vh 0;
+  background-color: #fff;
+  font-style: smaller;
+  text-align: center;
+  a {
+    font-weight: bold;
+  }
+}
+

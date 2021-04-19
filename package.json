@@ -1,0 +1,65 @@
+{
+  "homepage": "http://starck43.github.io/prestige-remont",
+  "name": "building-portfolio",
+  "private": true,
+  "description": "Prestige-remont site with Portfolio",
+  "version": "0.1.0",
+  "author": "iStarck",
+  "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "@wordpress/block-library": "^2.29.1",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "gatsby": "^3.2.1",
+    "gatsby-image": "^3.2.0",
+    "gatsby-plugin-manifest": "^3.2.0",
+    "gatsby-plugin-offline": "^4.2.0",
+    "gatsby-plugin-react-helmet": "^4.2.0",
+    "gatsby-plugin-sass": "^4.2.0",
+    "gatsby-plugin-sharp": "^3.2.1",
+    "gatsby-plugin-smoothscroll": "^1.2.0",
+    "gatsby-source-filesystem": "^3.2.0",
+    "gatsby-source-wordpress": "^5.2.2",
+    "gatsby-transformer-sharp": "^3.2.0",
+    "html-react-parser": "^1.2.4",
+    "lodash": "^4.17.21",
+    "node-sass": "^5.0.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "react-image": "^4.0.3",
+    "react-img-carousel": "^2.0.0",
+    "react-reveal": "^1.2.2",
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "prettier": "2.2.1"
+  },
+  "resolutions": {},
+  "keywords": [
+    "portfolio"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Starck43/prestige-remont"
+  },
+  "bugs": {
+    "url": "https://github.com/Starck43/prestige-remont/issues"
+  }
+}

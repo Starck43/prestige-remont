@@ -1,0 +1,69 @@
+@import "./vars";
+
+.card {
+  width: 100%;
+  height: 300px;
+  overflow: hidden !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 0;
+  @include media(">=lgphone", "<tablet") {
+    height: 450px;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+    background-color: transparentize(#fff, 0.2);
+    backdrop-filter: filter(8px);
+    transition: all 500ms ease, transform 300ms ease-in-out;
+    transform: translate(0, 1.5rem);
+    opacity: 0;
+    cursor: pointer;
+    h3 {
+      width: 100%;
+      font-size: 1.6rem;
+    }
+    p {
+      max-height: 50%;
+      margin-bottom: 1.5rem;
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .btn {
+      margin-top: auto;
+      padding-top: 0.5rem;
+      text-decoration: none;
+      border-radius: 9999px;
+      border: 1px solid $main-color;
+      opacity: 0.6;
+    }
+
+    &:hover {
+      transform: translate(0, 0px);
+      opacity: 1;
+      .btn{
+        opacity: 1;
+      }
+    }
+
+    @include media(">=phone", "<lgphone") {
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+    @include media(">=lgphone", "<tablet") {
+      h3 {
+        font-size: 1.2rem;
+      }
+      p {
+        line-height: 1.3;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+#promotion{
+	.container {
+		width: 60%;
+		margin: auto;
+		@include media("<tablet") {
+			width: 100%;
+		}
+	}
+	ol {
+		padding: 0;
+		counter-reset: li;
+		list-style: none;
+	}
+	li{
+		list-style-type: none;
+		display: flex;
+		align-items: last baseline;
+		font-size: 1.25em;
+		&::before{
+			content: counter(li);
+			counter-increment: li;
+			position: relative;
+			display: block;
+			min-width: 50px;
+			margin-right: 0.25em;
+			text-align: right;
+			font-size: 10vh;
+		}
+		@include media("<tablet", "landscape") {
+			&::before{
+				font-size: 14vh;
+			}
+		}
+		@include media("<lgphone") {
+			font-size: 1em;
+		}
+		@include media(">=lgphone", "<tablet") {
+			font-size: 1.1em;
+			margin-bottom: 0.2rem;
+		}
+	}
+}

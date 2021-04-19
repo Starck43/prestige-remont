@@ -1,0 +1,17 @@
+#work {
+  .container{
+    @include media("<tablet") {
+      max-width: 100%;
+    }
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    width: 100%;
+    @include media("<tablet") {
+      grid-template-columns: 1fr;
+      grid-gap: 2vw;
+    }
+  }
+}
