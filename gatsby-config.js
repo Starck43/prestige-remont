@@ -68,8 +68,8 @@ module.exports = {
           timeout: 60000,
         },
         html: {
-          //useGatsbyImage: false,
-          createStaticFiles: false,
+          useGatsbyImage: false,
+          //createStaticFiles: false,
         },
         develop: {
           hardCacheData: false,
