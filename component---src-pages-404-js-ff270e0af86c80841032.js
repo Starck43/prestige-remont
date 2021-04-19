@@ -1,0 +1,2 @@
+(self.webpackChunkbuilding_portfolio_template=self.webpackChunkbuilding_portfolio_template||[]).push([[883],{9616:function(e,t,l){"use strict";l.r(t);var n=l(7294),u=l(3346),r=l(3751);t.default=function(){return n.createElement(u.Z,null,n.createElement(r.Z,{title:"404: Страница не найдена"}),n.createElement("h1",null,"404: Страница не найдена"),n.createElement("p",null,"Такого адреса не существует!"))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-ff270e0af86c80841032.js.map
