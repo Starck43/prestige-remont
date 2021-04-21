@@ -40,9 +40,8 @@ const Skills = () => {
 				let iconName = wrapper.id
 				if (iconName) {
 					iconName = iconName.replace('Icon','')
-					console.log(iconName)
 					var img = document.createElement('img')
-					img.src = `/icons/${iconName}.svg`
+					img.src = `src/images/icons/${iconName}.svg`
 					wrapper.prepend(img)
 				}
 			}
