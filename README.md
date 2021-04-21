@@ -4,27 +4,16 @@
 
 To view a live example, **[click here](https://react-portfolio-template.netlify.app/)**.
 
-
-Just change `src/yourdata.js` to get your personal portfolio. Feel free to use it as-is or customize it as much as you want.
-
-But if you want to **contribute** and make this much better for other developer have a look at [Issues](https://github.com/chetanverma16/react-portfolio-template/issues).
-
-
-If you created something awesome and want to contribute then feel free to open an [pull request](https://github.com/chetanverma16/react-portfolio-template/pulls).
-
-## Features
-- Responsive
-- Modern Design
-- Clean Animations
-- Easy to use
-
+Just change `src/main.js` to get your personal data.
 
 ## Sections
 ✔️ Header
 ✔️ Work
 ✔️ About
+✔️ Promotion
+✔️ Offers
 ✔️ Skills
-✔️ Contact
+✔️ Footer
 
 
 ## How To Use
@@ -57,6 +46,8 @@ We highly recommend to read through the [Deploying on Github Pages](https://crea
 You could also host directly with Netlify by linking your own repository.
 
 [![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chetanverma16/react-portfolio-template)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/003a376c-79c6-4a0f-8137-c627e253d9c9/deploy-status)](https://app.netlify.com/sites/prestige-remont/deploys)
 
 For more information, read [hosting on Netlify](https://create-react-app.dev/docs/deployment/#netlify).
 
