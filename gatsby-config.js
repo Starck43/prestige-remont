@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Престиж-ремонт`,
-    description: `Строительно-монтажные и отделочные работы`,
+    title: `Престиж Ремонт`,
+    description: `Строительно-монтажные и отделочные работы любой сложности`,
     author: `@iStarck`,
+    authorUrl: `http://istarck.ru`,
   },
   plugins: [
     {
@@ -13,6 +14,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-sass`,
@@ -25,19 +27,20 @@ module.exports = {
         precachePages: [`/*`],
       },
     },
-      /**
-       * First up is the WordPress source plugin that connects Gatsby
-       * to your WordPress site.
-       *
-       * visit the plugin docs to learn more
-       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
-       *
-       */
+    /**
+     * First up is the WordPress source plugin that connects Gatsby
+     * to your WordPress site.
+     *
+     * visit the plugin docs to learn more
+     * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
+     *
+     */
     {
       resolve: `gatsby-source-wordpress`,
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
-        url: process.env.WPGRAPHQL_URL || `https://wp.престиж-ремонт.рф/qraphql`,
+        url:
+          process.env.WPGRAPHQL_URL || `https://wp.престиж-ремонт.рф/qraphql`,
         type: {
           MediaItem: { lazyNodes: true },
           Menu: {
