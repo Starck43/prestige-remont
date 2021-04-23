@@ -1,9 +1,9 @@
 import React from "react"
 //import ReactModal from 'react-modal'
-//import { Link } from 'gatsby'
+//import { useStaticQuery, graphql } from 'gatsby'
 
 import Layout from "../components/Layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 // Components
 import Header from "../components/Header"
 import Work from "../components/Work"
@@ -13,31 +13,19 @@ import Skills from "../components/Skills"
 import Promotion from "../components/Promotion"
 import Footer from "../components/Footer"
 
+//import data from "../main.js"
 
-//ReactModal.setAppElement('.contactBtn')
-
-/*handleModalOpen = event => {
-// console.log('handleModalOpen: ', event);
-this.setState({ isModalOpen: true })
-}
-
-handleModalClose = event => {
-// console.log('handleModalOpen: ', event);
-this.setState({ isModalOpen: false })
-}*/
-
-const IndexPage = ({data}) => (
-	<Layout className="main-container">
-		<SEO title="Ремонт под ключ" />
-		<Header></Header>
-		<Work></Work>
-		<About></About>
-		<Offers></Offers>
-		<Promotion></Promotion>
-		<Skills></Skills>
-		<Footer></Footer>
-	</Layout>
+const IndexPage = ({ data }) => (
+  <Layout className="main-container">
+    <Seo title='Престиж ремонт' />
+    <Header/>
+    <Work/>
+    <About/>
+    <Offers/>
+    <Promotion/>
+    <Skills/>
+    <Footer/>
+  </Layout>
 )
 
 export default IndexPage
-

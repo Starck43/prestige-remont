@@ -2,38 +2,40 @@ import React from "react"
 import scrollTo from "gatsby-plugin-smoothscroll"
 import { Link } from "gatsby"
 
-const Navbar = ({pageClass}) => {
-
+const Navbar = ({ pageClass }) => {
   const getParentByTag = (elem, lookingFor) => {
-    lookingFor = lookingFor.toUpperCase();
+    lookingFor = lookingFor.toUpperCase()
     if (elem.tagName === lookingFor) return elem
 
-    while (elem = elem.parentNode) {
+    while ((elem = elem.parentNode)) {
       if (elem.tagName === lookingFor) return elem
     }
     return null
   }
 
-  const handleClick = (e) => {
-    if (pageClass === 'main-container') {
-
-      var link = getParentByTag(e.target,'a')
+  const handleClick = e => {
+    if (pageClass === "main-container") {
+      var link = getParentByTag(e.target, "a")
       if (link && link.hash) {
         e.preventDefault()
         scrollTo(link.hash)
       }
-
     }
   }
 
   return (
     <div className="container">
       <div className="navbar-wrapper">
-
         <Link to="/#home" onClick={handleClick}>
           <div id="logo">
-            <div className="line-1"><span className="part-1">п</span><span className="part-2">р</span><span className="part-3">естиж</span></div>
-            <div className="line-2">емонт<span className="part-1">43</span></div>
+            <div className="line-1">
+              <span className="part-1">п</span>
+              <span className="part-2">р</span>
+              <span className="part-3">естиж</span>
+            </div>
+            <div className="line-2">
+              емонт<span className="part-1"></span>
+            </div>
           </div>
         </Link>
 
@@ -48,13 +50,9 @@ const Navbar = ({pageClass}) => {
             Контакты
           </Link>
         </div>
-
       </div>
     </div>
   )
-
-
 }
 
 export default Navbar
-

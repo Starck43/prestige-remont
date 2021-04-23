@@ -1,40 +1,42 @@
 import React from "react"
-import axios from 'axios'
-import { Modal, Form, Button, Col, Spinner } from 'react-bootstrap'
+import axios from "axios"
+import { Modal, Form, Button, Col, Spinner } from "react-bootstrap"
 
 import data from "../main"
-import '../styles/contactform.scss'
-
+import "../styles/contactform.scss"
 
 class ContactModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeOverlay : false,
-      handleOverlay : this.handleOverlay.bind(this),
+      activeOverlay: false,
+      handleOverlay: this.handleOverlay.bind(this),
     }
   }
 
-  handleOverlay = (status) => {
+  handleOverlay = status => {
     this.setState({
-      activeOverlay : status
+      activeOverlay: status,
     })
   }
 
-  render () {
+  render() {
     return (
       <div className="section" id="contactModal">
         <div className="container">
-
-          <Modal {...this.props}
+          <Modal
+            {...this.props}
             dialogClassName="mt-3"
             aria-labelledby="contained-modal-title-vcenter"
             scrollable="false"
             centered
             size="lg"
           >
-
-            <div className={"modal-overlay" + (this.state.activeOverlay ? " active" : "")}>
+            <div
+              className={
+                "modal-overlay" + (this.state.activeOverlay ? " active" : "")
+              }
+            >
               <div className="container">
                 <Spinner
                   as="span"
@@ -52,16 +54,17 @@ class ContactModal extends React.Component {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <ContactForm {...this.props} showOverlay={this.state.handleOverlay}/>
+              <ContactForm
+                {...this.props}
+                showOverlay={this.state.handleOverlay}
+              />
             </Modal.Body>
-
           </Modal>
         </div>
       </div>
-    );
+    )
   }
 }
-
 
 class ContactForm extends ContactModal {
   constructor(props) {
@@ -75,8 +78,7 @@ class ContactForm extends ContactModal {
     }
   }
 
-
-  onChange = (e) => {
+  onChange = e => {
     const name = e.target.getAttribute("name") //получим имя текущего элемента формы
     this.setState({
       message: { ...this.state.message, [name]: e.target.value },
@@ -84,54 +86,61 @@ class ContactForm extends ContactModal {
     })
   }
 
-  successResponse = (msg) => {
+  successResponse = msg => {
     this.setState({
       alertStatus: "success",
       submitted: true,
       validated: false,
-      message: {email: "", name: "", body: ""},
+      message: { email: "", name: "", body: "" },
     })
-    if (msg) this.setState({ alertMessage : msg })
+    if (msg) this.setState({ alertMessage: msg })
   }
 
-  failResponse = (msg) => {
+  failResponse = msg => {
     this.setState({
       alertStatus: "danger",
       submitted: false,
     })
-    if (msg) this.setState({ alertMessage : msg })
+    if (msg) this.setState({ alertMessage: msg })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     e.stopPropagation()
     // если форма заполнена, то отправим запрос на сервер
-    const form = e.currentTarget;
-    if ( form.checkValidity() === true ) {
+    const form = e.currentTarget
+    if (form.checkValidity() === true) {
       this.props.showOverlay(true)
       this.sendAjaxRequest()
       this.setState({ submitted: true })
     } else {
-      this.failResponse('Необходимо заполнить все поля формы')
+      this.failResponse("Необходимо заполнить все поля формы")
     }
     this.setState({ validated: true }) //Разрешим валидацию формы для выделения незаполненных полей при попытке отправить сообщение
-  };
-
+  }
 
   sendAjaxRequest = () => {
     axios({
       method: "POST",
       url: data.serverUrl,
-      data:  this.state.message
-    }).then((response)=>{
-      (response.status === 200) ? this.successResponse(response.data.message) : this.failResponse(response.data.message)
+      data: this.state.message,
+    }).then(response => {
+      response.status === 200
+        ? this.successResponse(response.data.message)
+        : this.failResponse(response.data.message)
       this.props.showOverlay(false)
     })
   }
 
   render() {
     return (
-      <Form className="ContactForm" noValidate validated={this.state.validated} onSubmit={this.handleSubmit} method="POST">
+      <Form
+        className="ContactForm"
+        noValidate
+        validated={this.state.validated}
+        onSubmit={this.handleSubmit}
+        method="POST"
+      >
         <Form.Row>
           <Form.Group controlId="nameControl" as={Col} lg="6">
             <Form.Control
@@ -144,7 +153,7 @@ class ContactForm extends ContactModal {
               size="lg"
             />
           </Form.Group>
-          <Form.Group controlId="emailControl" as={Col} lg="6" >
+          <Form.Group controlId="emailControl" as={Col} lg="6">
             <Form.Control
               type="email"
               name="email"
@@ -173,9 +182,7 @@ class ContactForm extends ContactModal {
         </div>
         <Form.Group>
           <Button
-            variant={
-              this.state.submitted ? 'default' : 'primary'
-            }
+            variant={this.state.submitted ? "default" : "primary"}
             type="submit"
             disabled={this.state.submitted}
             size="lg"
@@ -183,9 +190,7 @@ class ContactForm extends ContactModal {
             Отправить
           </Button>
           <Button
-            variant={
-              !this.state.submitted ? 'default' : 'primary'
-            }
+            variant={!this.state.submitted ? "default" : "primary"}
             type="button"
             size="lg"
             onClick={this.props.onHide}
@@ -194,11 +199,8 @@ class ContactForm extends ContactModal {
           </Button>
         </Form.Group>
       </Form>
-
     )
   }
 }
-
-
 
 export default ContactModal

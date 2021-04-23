@@ -17,12 +17,11 @@ exports.createPages = async gatsbyUtilities => {
 
   // If there are no posts in WordPress, don't do anything
   if (!posts.length) {
-	return
+    return
   }
 
   // If there are posts, create pages for them
   await createPostPage({ posts, gatsbyUtilities })
-
 }
 
 /**
@@ -30,28 +29,27 @@ exports.createPages = async gatsbyUtilities => {
  */
 const createPostPage = async ({ posts, gatsbyUtilities }) =>
   Promise.all(
-	posts.map(({ post }) =>
-	  // createPage is an action passed to createPages
-	  // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-	  gatsbyUtilities.actions.createPage({
-		// Use the WordPress uri as the Gatsby page path
-		path: post.uri,
+    posts.map(({ post }) =>
+      // createPage is an action passed to createPages
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      gatsbyUtilities.actions.createPage({
+        // Use the WordPress uri as the Gatsby page path
+        path: post.uri,
 
-		// use the blog post template as the page component
-		component: path.resolve(`./src/templates/portfolio.js`),
+        // use the blog post template as the page component
+        component: path.resolve(`./src/templates/portfolio.js`),
 
-		// `context` is available in the template as a prop and
-		// as a variable in GraphQL.
-		context: {
-		  // we need to add the post id here
-		  // so our blog post template knows which blog post
-		  // the current page is (when you open it in a browser)
-		  id: post.id,
-		},
-	  })
-	)
+        // `context` is available in the template as a prop and
+        // as a variable in GraphQL.
+        context: {
+          // we need to add the post id here
+          // so our blog post template knows which blog post
+          // the current page is (when you open it in a browser)
+          id: post.id,
+        },
+      })
+    )
   )
-
 
 /**
  * This function queries Gatsby's GraphQL server and asks for
@@ -63,31 +61,30 @@ const createPostPage = async ({ posts, gatsbyUtilities }) =>
  */
 async function getPosts({ graphql, reporter }) {
   const graphqlResult = await graphql(/* GraphQL */ `
-	query WpPosts {
-	  # Query all WordPress blog posts sorted by date
-	  allWpPost {
-		edges {
-
-		  # note: this is a GraphQL alias. It renames "node" to "post" for this query
-		  # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-		  post: node {
-			id
-			uri
-			title
-			slug
-			excerpt
-		  }
-		}
-	  }
-	}
+    query WpPosts {
+      # Query all WordPress blog posts sorted by date
+      allWpPost {
+        edges {
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          post: node {
+            id
+            uri
+            title
+            slug
+            excerpt
+          }
+        }
+      }
+    }
   `)
 
   if (graphqlResult.errors) {
-	reporter.panicOnBuild(
-	  `There was an error loading your blog posts`,
-	  graphqlResult.errors
-	)
-	return
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
   }
 
   return graphqlResult.data.allWpPost.edges

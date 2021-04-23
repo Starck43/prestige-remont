@@ -6,7 +6,7 @@ import Fade from "react-reveal/Fade"
 const About = () => {
   const query = useStaticQuery(graphql`
     {
-      wpPage(slug: {eq: "about-us"}) {
+      wpPage(slug: { eq: "about-us" }) {
         content
         id
         title
@@ -22,23 +22,23 @@ const About = () => {
   return (
     <section id="about">
       <div className="container">
-
         <Fade bottom cascade>
           <h1>{query.wpPage.title}</h1>
         </Fade>
 
         <Fade>
           <div className="content">
-            <div className="text">
-              {parse(query.wpPage.content)}
-            </div>
+            <div className="text">{parse(query.wpPage.content)}</div>
 
             <div className="image-wrapper">
-              <img src={query.wpPage.featuredImage.node.sourceUrl} srcSet={query.wpPage.featuredImage.node.srcSet} alt="о нас"></img>
+              <img
+                src={query.wpPage.featuredImage.node.sourceUrl}
+                srcSet={query.wpPage.featuredImage.node.srcSet}
+                alt="о нас"
+              ></img>
             </div>
           </div>
         </Fade>
-
       </div>
     </section>
   )

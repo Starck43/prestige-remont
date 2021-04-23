@@ -3,34 +3,45 @@ import { useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
 import Fade from "react-reveal/Fade"
 
-import data from "../main"
+import {getYear} from "../main"
 
-const Footer = () => {
+const Footer = ({config}) => {
+
   const query = useStaticQuery(graphql`
     {
-      wpPage(slug: {eq: "contacts"}) {
+      site {
+        siteMetadata {
+          title
+          author
+          authorUrl
+        }
+      }
+      wpPage(slug: { eq: "contacts" }) {
         id
         title
         content
       }
     }
   `)
+
+  const {title, author, authorUrl} = query.site.siteMetadata //get data from query to gatsby-config.js
+
   return (
-    <section id="contact">
-      <div className="footer-container">
+    <section id="footer">
+
+      <div className="contacts-container">
         <Fade bottom cascade>
           <h1>{query.wpPage.title}</h1>
         </Fade>
-
-        <Fade>
-          {parse(query.wpPage.content)}
-        </Fade>
+        <Fade>{parse(query.wpPage.content)}</Fade>
       </div>
-      <div id="devCompany">
-        разработчик {" "}<a href={data.devCompany.url}>{data.devCompany.name}</a>
+      <div className="subfooter-container centered">
+        <span>© {getYear()} {title} </span>
+        <span>[ разработчик <a href={authorUrl}>{author}</a> ]</span>
       </div>
     </section>
   )
 }
+
 
 export default Footer
