@@ -6,26 +6,28 @@
 .portfolio-container {
 	overflow: hidden;
 	height: 100vh;
+	.navbar-wrapper .links-wrapper > * {
+		opacity: 1;
+	}
 	#navbar{
 		position: relative;
+		background-color: $navbar-bg;
+		max-height: $scrolled-navbar-h;
 	}
 	#content{
-		position: relative;
-		height: calc(100% - #{$navbar-h-desktop});
-		@include media("<tablet") {
-			height: calc(100% - #{$navbar-h-phone});
-		}
-		@include media(">=tablet", "<desktop") {
-			height: calc(100% - #{$navbar-h-tablet});
-		}
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
 	}
 }
 
 .btn-back {
-	position: absolute;
+	position: relative;
 	left: 2vw;
 	top: 2vw;
-	background-color: transparentize(#fff, 0.7);
+	background-color: $navbar-bg;
 	border: 1px solid $main-color;
 	font-size: 0.8em;
 	z-index: 2;

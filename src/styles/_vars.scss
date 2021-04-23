@@ -6,6 +6,10 @@ $main-color: burlywood;
 $main-color-hover: darken($main-color, 20%);
 $bg-color: oldlace;
 $title-color: $main-color-hover;
-
+$navbar-bg: transparentize(#fff, 0.7);
 $text-color: #444;
+$large-size: 1.25rem;
 
+$collapse-icon-size: 20px;
+
+$scrolled-navbar-h: 67px;
