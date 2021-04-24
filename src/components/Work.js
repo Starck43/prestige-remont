@@ -40,7 +40,7 @@ const Work = () => {
                 key={index}
                 heading={post.title}
                 paragraph={post.excerpt}
-                imgUrl={post.featuredImage.node.sourceUrl}
+                imgUrl={post.featuredImage?.node?.sourceUrl}
                 projectLink={post.slug}
               />
             ))}
