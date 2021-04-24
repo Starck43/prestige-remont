@@ -11,7 +11,7 @@ const Settings = {
   //Change The Website Template
   // API server URL
   serverUrl: "https://wp.престиж-ремонт.рф/wp-json/contact/v1/send",
-
+  googleAnalyticsId: "G-VPRX4KFFB1",
   // Work Section ------------------------
   projects: [
     /*

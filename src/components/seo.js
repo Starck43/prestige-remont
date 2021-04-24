@@ -10,6 +10,9 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+import data from "../main.js"
+
+
 function Seo({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
@@ -25,8 +28,9 @@ function Seo({ description, lang, meta, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site.siteMetadata.description
+  const metaKeywords = site.siteMetadata?.keywords
 
   return (
     <Helmet
@@ -37,12 +41,16 @@ function Seo({ description, lang, meta, title }) {
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
       meta={[
         {
+          property: `og:title`,
+          content: title,
+        },
+        {
           name: `description`,
           content: metaDescription,
         },
         {
-          property: `og:title`,
-          content: title,
+          name: `keywords`,
+          content: metaKeywords,
         },
         {
           property: `og:description`,
@@ -53,7 +61,17 @@ function Seo({ description, lang, meta, title }) {
           content: `website`,
         },
       ].concat(meta)}
-    />
+    >
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${data.googleAnalyticsId}`}></script>
+      <script>{`
+        window.dataLayer = window.dataLayer || []
+        function gtag(){dataLayer.push(arguments)}
+        gtag('js', new Date())
+
+        gtag('config', '${data.googleAnalyticsId}')
+        `}
+      </script>
+    </Helmet>
   )
 }
 
