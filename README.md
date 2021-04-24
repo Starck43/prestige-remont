@@ -60,7 +60,7 @@ It's a page with images carousel created for all Works. A new post it's a new po
 In admin menu go to [Posts > New Post]:
 
 1. Enter a title
-2. Add excerpt as option 
+2. Add excerpt as option
 3. Add featured Image as cover in Work section on main page
 4. Insert projects photos as gallery Gutenberg Block in content
 5. Replace slug on your individual one in latin if you want (not necessary)
