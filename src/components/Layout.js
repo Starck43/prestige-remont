@@ -7,7 +7,7 @@
 
 import React, { useEffect, useState } from "react"
 import { createBrowserHistory } from "history"
-import Navbar from "./Navbar"
+import Navbar from "../../components/Navbar"
 
 import "../styles/main.scss"
 

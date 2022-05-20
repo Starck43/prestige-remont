@@ -1,0 +1,68 @@
+@import "../vars.module";
+
+#portfolio {
+	background-color: $bg-color-2;
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		grid-gap: 1rem;
+		width: 100%;
+		@include media-breakpoint-up(md) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.img-wrapper {
+		position: relative;
+		width: 100%;
+		border: 0;
+
+		img {
+			opacity: 0;
+			transition: .5s all ease;
+
+			&.visible {
+				opacity: 1;
+			}
+		}
+
+		.content {
+			@include push--absolute();
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-content: center;
+			padding: 1rem;
+			text-align: center;
+			background-color: transparentize(#fff, 0.2);
+			backdrop-filter: blur(10px);
+			transition: all 500ms ease, transform 200ms ease-in-out;
+			transform: translate(0, 1.5rem);
+			opacity: 0;
+			cursor: pointer;
+			z-index: 1;
+
+			h3 {
+				width: 100%;
+				font-size: 1.6rem;
+			}
+
+			p {
+				//max-height: 50%;
+				margin-bottom: 1.5rem;
+				font-size: 0.8rem;
+				line-height: 1.5;
+			}
+
+			&:hover {
+				transform: translate(0, 0px);
+				opacity: 1;
+
+				.btn {
+					opacity: 1;
+				}
+			}
+
+		}
+	}
+}

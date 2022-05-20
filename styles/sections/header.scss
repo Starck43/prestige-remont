@@ -1,0 +1,60 @@
+@import "../vars.module";
+
+#index {
+	position: relative;
+	width: 100%;
+	min-height: 100vh;
+	flex-direction: column;
+
+	.img-wrapper {
+		background-color: white;
+		mix-blend-mode: multiply;
+		opacity: 0.4;
+		filter: blur(0px);
+		transition: all .5s ease-in;
+	}
+
+	.content {
+		margin: auto;
+		text-align: center;
+		z-index: 1;
+	}
+
+	.main-title {
+		margin-top: 0;
+		margin-bottom: 4vh;
+		text-shadow: 0 0 10px lighten($brand-color, 20%);
+	}
+
+	h2 {
+		font-size: 1.4em;
+		font-weight: bold;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	p, ol, ul {
+		width: 60%;
+		margin: 4vh auto;
+		padding: 4vh;
+		font-size: 1em;
+		text-align: left;
+		overflow: hidden;
+		border-radius: 5px;
+		background-color: transparentize(#fff, 0.2);
+
+	}
+
+	li {
+		list-style-type: none;
+		margin-bottom: 0.5em;
+
+		&::before {
+			content: '✓ ';
+			font-size: 1.2em;
+			font-weight: bold;
+		}
+	}
+}

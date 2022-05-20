@@ -1,4 +1,4 @@
-// Social Icon
+
 //import instagramIcon from "./images/instagram.svg"
 
 
@@ -7,36 +7,16 @@ export const getYear = () => {
 }
 
 const Settings = {
-  //(Please Do Not Remove The comma(,) after every variable)
-  //Change The Website Template
-  // API server URL
-  serverUrl: "https://wp.престиж-ремонт.рф/wp-json/contact/v1/send",
-  googleAnalyticsId: "G-VPRX4KFFB1",
-  // Work Section ------------------------
-  projects: [
-    /*
-    If You Want To Add More Project just Copy and Paste This At The End
-    {
-        title: 'Имя проекта',
-        para: 'описание',
-        imageSrc: "",
-        url: ''
-    }
-    */
-  ],
 
-  // End Work Section -----------------------
-
-  //   Contact Section --------------
-
-  /*  contactSubHeading: "свяжитесь с нами любым удобным способом",
-  social: [
-    {
-      img: instagramIcon, url: "https://www.instagram.com/",
+    SERVER: process.env.SERVER,
+    API_SERVER: process.env.SERVER + '/wp-json',
+    API_ENDPOINTS: {
+      sendMessage: '/contact/v1/send',
     },
-  ],*/
 
-  // End Contact Section ---------------
+  // API server URL
+  serverUrl: 'https://wp.престиж-ремонт.рф/wp-json/contact/v1/send',
+  googleAnalyticsId: 'G-VPRX4KFFB1',
 }
 
 export default Settings

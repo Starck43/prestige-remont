@@ -1,0 +1,58 @@
+@import "../vars.module";
+
+#skills {
+
+	.content {
+
+		.grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-gap: 2rem;
+			flex: 100%;
+			@include media-breakpoint-up(md) {
+				grid-template-columns: 1fr 1fr;
+			}
+
+			@include media-breakpoint-up(lg) {
+				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+			}
+
+			.skill {
+				flex-direction: column;
+				padding: 2rem;
+				//background-color: $bg-color-2;
+				border: 2px solid $border-color;
+				border-radius: 2px;
+				img {
+					width: 12vw;
+					margin-bottom: 2rem;
+				}
+
+				p {
+					font-size: 1.2rem;
+				}
+				@include media-breakpoint-up(sm) {
+					flex-direction: row;
+					align-items: flex-start;
+					justify-content: flex-start;
+					img{
+						width: 4rem;
+						margin-right: 1.5rem;
+						margin-bottom: 0;
+					}
+				}
+				@include media-breakpoint-up(md) {
+					padding: 1.5rem;
+					img{
+						width: 3rem;
+						margin-right: 1rem;
+					}
+					p{
+						font-size: 1rem;
+						word-break: break-word;
+					}
+				}
+			}
+		}
+	}
+}

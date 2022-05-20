@@ -1,3 +1,10 @@
+//const isProduction = process.env.NODE_ENV === "production"
+//const serverName = isProduction ? `https://wp.престиж-ремонт.рф` : 'https://wp.престиж-ремонт.рф'
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Престиж Ремонт`,
@@ -41,9 +48,9 @@ module.exports = {
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
         url:
-          process.env.WPGRAPHQL_URL || `https://wp.престиж-ремонт.рф/qraphql`,
+          process.env.WPGRAPHQL_URL || process.env.SERVER + `/qraphql`,
         type: {
-          MediaItem: { lazyNodes: true },
+          MediaItem: { lazyNodes: true, createFileNodes: false },
           Menu: {
             exclude: true,
           },

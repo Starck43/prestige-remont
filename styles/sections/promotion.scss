@@ -1,0 +1,43 @@
+@import "../vars.module";
+
+#promotion {
+	background-color: $bg-color-2;
+
+	.container {
+		width: 100%;
+		max-width: 800px;
+	}
+
+	ol {
+		padding: 0;
+		counter-reset: li;
+		//list-style: none;
+	}
+
+	li {
+		//list-style-type: none;
+		display: flex;
+		align-items: last baseline;
+		font-size: 1.2rem;
+
+		&::before {
+			content: counter(li);
+			counter-increment: li;
+			position: relative;
+			display: block;
+			top: -1.8rem;
+			width: 3rem;
+			margin-right: 0.75rem;
+			text-align: right;
+			font-size: 10vh;
+			color: $brand-color-hover;
+			font-weight: 500;
+		}
+
+		@include media-breakpoint-between(md, lg) {
+			&::before {
+				font-size: 14vh;
+			}
+		}
+	}
+}

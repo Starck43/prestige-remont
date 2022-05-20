@@ -16,7 +16,7 @@ exports.createPages = async gatsbyUtilities => {
   const posts = await getPosts(gatsbyUtilities)
 
   // If there are no posts in WordPress, don't do anything
-  if (!posts.length) {
+  if (!posts?.length) {
     return
   }
 

@@ -1,0 +1,91 @@
+@import "../vars.module";
+
+#offers {
+	.container {
+		width: 100%;
+		max-width: 800px;
+	}
+
+	.content {
+		margin: auto;
+		@include media-breakpoint-down(md) {
+			width: 100%;
+		}
+
+		ul {
+			padding: 0;
+		}
+
+		li {
+			list-style-type: none;
+			margin-bottom: 2vh;
+			font-size: 1.2rem;
+			cursor: pointer;
+
+			.card-header {
+				position: relative;
+				display: flex;
+				align-items: baseline;
+				padding: 0.5rem 0 0.5rem $collapse-icon-size*1.5;
+				background-color: transparent;
+				border-bottom: 1px dotted $brand-color;
+				font-weight: bold;
+
+				&::before, &::after {
+					display: inline-block;
+					position: absolute;
+					background-color: $brand-color-hover;
+				}
+
+				&::before {
+					content: '';
+					left: 0;
+					top: calc(#{$collapse-icon-size} + 2px);
+					width: $collapse-icon-size;
+					height: 2px;
+					border-radius: 2px;
+				}
+
+				&::after {
+					content: '';
+					left: calc(#{$collapse-icon-size/2} - 1px);
+					top: calc(#{$collapse-icon-size/2} + 3px);
+					width: 2px;
+					height: $collapse-icon-size;
+					transition: all 300ms ease;
+				}
+
+				&.active::after {
+					transform: rotate(90deg);
+				}
+			}
+
+			.card-detail {
+				font-size: 0.8em;
+				color: $text-color;
+				background-color: transparentize(black, 0.95);
+
+				> * {
+					padding: 1rem 2rem;
+					margin-bottom: 0;
+				}
+			}
+
+			@include media-breakpoint-down(sm) {
+				font-size: 1em;
+				.offer-header::before {
+					font-size: 1.4em;
+					margin-right: 0.25em;
+				}
+			}
+			@include media-breakpoint-between(sm, md) {
+				font-size: 1.1em;
+				margin-bottom: 0.25rem;
+				.offer-header::before {
+					font-size: 1.6em;
+				}
+			}
+		}
+	}
+
+}
