@@ -35,7 +35,7 @@ module.exports = {
   },
   compiler: {
     // ssr and displayName are configured by default
-    styledComponents: true,
+    //styledComponents: true,
     relay: {
       // This should match relay.config.js
       src: "./",

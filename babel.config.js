@@ -9,12 +9,6 @@ module.exports = {
 			"babel-plugin-root-import"
 		],
 		[
-			"styled-components",
-			{
-				"ssr": true
-			}
-		],
-		[
 			"macros"
 		],
 	]

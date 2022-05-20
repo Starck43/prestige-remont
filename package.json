@@ -3,7 +3,7 @@
   "name": "prestige-remont",
   "private": true,
   "description": "portfolio of realized projects of a finishing company",
-  "version": "0.1.1",
+  "version": "2.0",
   "author": "iStarck",
   "scripts": {
     "dev": "next",

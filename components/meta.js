@@ -5,24 +5,10 @@ const Meta = ({metadata, googleAnalyticsId, yandexMetrikaId}) => (
 		<meta charSet="utf-8"/>
 		<title>{metadata.title}</title>
 		<link
-			href="/fonts/exo2_0_regular.woff2"
-			rel="preload"
-			as="font"
-			crossOrigin="true"
-		/>
-		<link
-			href="/fonts/exo2_0_bold.woff2"
-			rel="preload"
-			as="font"
-			crossOrigin="true"
-		/>
-		<link href="/logo.svg" rel="preload" as="image"/>
-		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
 			href="/favicons/apple-touch-icon.png"
 		/>
-		<link rel="icon" type="image/svg" href="/logo.svg"/>
 		<link
 			rel="icon"
 			type="image/png"
