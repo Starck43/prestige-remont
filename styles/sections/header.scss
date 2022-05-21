@@ -2,6 +2,8 @@
 
 #index {
 	position: relative;
+	align-items: center;
+	display: flex;
 	width: 100%;
 	min-height: 100vh;
 	flex-direction: column;
@@ -15,7 +17,8 @@
 	}
 
 	.content {
-		margin: auto;
+		position: relative;
+		margin: 12vh auto 0;
 		text-align: center;
 		z-index: 1;
 	}
@@ -36,7 +39,7 @@
 	}
 
 	p, ol, ul {
-		width: 60%;
+		width: 95%;
 		margin: 4vh auto;
 		padding: 4vh;
 		font-size: 1em;
@@ -44,6 +47,12 @@
 		overflow: hidden;
 		border-radius: 5px;
 		background-color: transparentize(#fff, 0.2);
+		@include media-breakpoint-up(sm) {
+			width: 80%;
+		}
+		@include media-breakpoint-up(lg) {
+			width: 60%;
+		}
 
 	}
 
@@ -55,6 +64,7 @@
 			content: '✓ ';
 			font-size: 1.2em;
 			font-weight: bold;
+			color: $brand-color-hover;
 		}
 	}
 }

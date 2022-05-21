@@ -38,16 +38,16 @@ const Card = ({ id, title, excerpt, featuredImage }) => {
     }
   }
 
-  const remoteLoader = ({ src, width }) => {
+/*  const remoteLoader = ({ src, width }) => {
     let curKey = Object.keys(srcSet).find(key => key === width + "w")
     return srcSet[curKey] || src
-  }
+  }*/
 
   return (
     <div data-id={id} className="card img-wrapper">
       <Image
         src={featuredImage?.node.sourceUrl}
-        loader={remoteLoader}
+        //loader={remoteLoader}
         alt={featuredImage?.node.altText}
         layout="responsive"
         objectFit="cover"
@@ -55,6 +55,7 @@ const Card = ({ id, title, excerpt, featuredImage }) => {
         height={9}
         className={`${imageLoaded ? "visible" : ""}`}
         onLoadingComplete={() => setImageLoaded(true)}
+        unoptimized
       />
       <div className="content">
         <h3 className="header">{title}</h3>

@@ -1,19 +1,17 @@
-import React from "react"
+import React, {useRef} from "react"
 import parse from "html-react-parser"
 import { Title } from "./UI/title"
 import Container from "./UI/container"
 import { srcSet2Obj } from "../core/helpers/utils"
 import Image from "next/image"
 import { FadeSection } from "./UI/section"
-import {useInView} from "react-cool-inview"
+import {useFadeEffect} from "../core/hooks"
 //import Fade from "react-reveal/Fade"
 
+
 const About = ({ title, slug, content, featuredImage }) => {
-  const { observe, inView } = useInView({
-    unobserveOnEnter: true,
-    // Shrink the root margin, so the animation will be triggered once the target reach a fixed amount of visible
-    rootMargin: "-100px 0px",
-  })
+  const observe = useRef()
+  const inView = useFadeEffect(observe)
   let image = featuredImage?.node
   let srcSet = srcSet2Obj(image?.srcSet)
 

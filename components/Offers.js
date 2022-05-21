@@ -1,6 +1,5 @@
-import React, { useContext } from "react"
+import React, {useContext, useRef} from "react"
 import parse from "html-react-parser"
-import { useInView } from "react-cool-inview"
 
 import {
   Accordion,
@@ -12,9 +11,11 @@ import {
 import { Title } from "./UI/title"
 import Container from "./UI/container"
 import { FadeSection } from "./UI/section"
+import {useFadeEffect} from "../core/hooks"
 
-/*const parseOptions = {
 
+/*
+const parseOptions = {
 	replace: node => {
 			if (!node.data) return;
 
@@ -24,15 +25,12 @@ import { FadeSection } from "./UI/section"
 			}
 
 	},
-
-}*/
+}
+*/
 
 const Offers = ({ title, slug, content }) => {
-  const { observe, inView } = useInView({
-    unobserveOnEnter: true,
-    // Shrink the root margin, so the animation will be triggered once the target reach a fixed amount of visible
-    rootMargin: "-100px 0px",
-  })
+  const observe = useRef()
+  const inView = useFadeEffect(observe)
 
   const offersList = []
   const options = {
@@ -73,7 +71,7 @@ const Offers = ({ title, slug, content }) => {
     )
 
     return (
-      <Card.Header
+      <Card.Header as={'h4'}
         className={eventKey === activeEventKey ? "active" : ""}
         onClick={handleClick}
       >

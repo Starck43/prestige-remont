@@ -19,7 +19,6 @@
 		li {
 			list-style-type: none;
 			margin-bottom: 2vh;
-			font-size: 1.2rem;
 			cursor: pointer;
 
 			.card-header {
@@ -61,7 +60,7 @@
 			}
 
 			.card-detail {
-				font-size: 0.8em;
+				font-size: 1rem;
 				color: $text-color;
 				background-color: transparentize(black, 0.95);
 
@@ -71,15 +70,21 @@
 				}
 			}
 
+			@include media-breakpoint-up(md) {
+				.card-detail {
+					font-size: 0.8rem;
+				}
+			}
 			@include media-breakpoint-down(sm) {
-				font-size: 1em;
+				.card-header {
+					font-size: 1.2rem;
+				}
 				.offer-header::before {
 					font-size: 1.4em;
 					margin-right: 0.25em;
 				}
 			}
 			@include media-breakpoint-between(sm, md) {
-				font-size: 1.1em;
 				margin-bottom: 0.25rem;
 				.offer-header::before {
 					font-size: 1.6em;

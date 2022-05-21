@@ -9,22 +9,25 @@
 	z-index: 2;
 
 	.navbar-wrapper {
-		width: 100%;
-		padding: 2rem;
 		display: flex;
 		align-items: center;
+		width: 100%;
+		padding: 2rem;
 		justify-content: space-between;
 
 		.navbar-items {
+			margin-top: 0;
 			> * {
 				text-decoration: none;
 				padding: 0.2rem 0;
 				margin-left: 2rem;
 				font-family: "Open Sans", sans-serif;
+				color: #000;
 				opacity: 0.8;
 				transition: all 0.2s ease;
+				text-align: right;
 				font-size: 1rem;
-				font-weight: bold;
+				font-weight: normal;
 				background-color: transparent;
 				text-shadow: 0 1px 1px white;
 				outline: none;
@@ -40,6 +43,15 @@
 			.active {
 				color: black;
 			}
+
+
+		}
+
+		@media (max-width: 575.98px) and (orientation: portrait) {
+			.navbar-items {
+				margin-top: 2rem;
+			}
+			flex-direction: column;
 		}
 	}
 }

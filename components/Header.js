@@ -19,7 +19,7 @@ const Header = ({ title, slug, content, featuredImage }) => {
   //console.log(imageFile)
 
   return (
-    <FadeSection inView={true} id={slug} className="mb-0 flex-centered">
+    <section id={slug}>
       {image?.sourceUrl && (
         <Image
           loader={remoteLoader}
@@ -44,7 +44,7 @@ const Header = ({ title, slug, content, featuredImage }) => {
 
         {parse(content)}
       </article>
-    </FadeSection>
+    </section>
   )
 }
 

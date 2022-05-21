@@ -17,7 +17,8 @@
 	li {
 		//list-style-type: none;
 		display: flex;
-		align-items: last baseline;
+		align-items: flex-start;
+		margin-bottom: 1rem;
 		font-size: 1.2rem;
 
 		&::before {
@@ -25,11 +26,11 @@
 			counter-increment: li;
 			position: relative;
 			display: block;
-			top: -1.8rem;
-			width: 3rem;
+			min-width: 3rem;
 			margin-right: 0.75rem;
 			text-align: right;
 			font-size: 10vh;
+			line-height: 1;
 			color: $brand-color-hover;
 			font-weight: 500;
 		}

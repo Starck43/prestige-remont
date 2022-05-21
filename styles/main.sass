@@ -74,6 +74,7 @@ a
 
 body
 	min-height: 100vh
+	scroll-behavior: smooth
 
 #__next
 	display: flex
@@ -83,6 +84,7 @@ body
 
 main
 	flex: 1
+	scroll-behavior: smooth
 
 	section
 		flex: 100%
@@ -99,14 +101,26 @@ section
 
 h1
 	color: $brand-color-hover
-	font-size: 3.2rem
+	font-size: 2.2rem
 	font-weight: bold
+	+media-breakpoint-up(sm)
+		font-size: 2.6rem
+
+	+media-breakpoint-up(md)
+		font-size: 3.2rem
+
+h2
+	font-size: 1.8rem
+	+media-breakpoint-up(sm)
+		font-size: 2.2rem
+
+	+media-breakpoint-up(md)
+		font-size: 2.8rem
 
 .title
 	margin-bottom: 3rem
 	color: $title-color
 	text-shadow: 0 1px 2px white
-	font-size: 3rem
 	text-align: center
 	font-weight: bold
 	flex: 100%
@@ -115,7 +129,7 @@ h1
 	opacity: 0
 	transform: translate(0, $fade-section-offset)
 	visibility: hidden
-	transition: opacity 500ms ease-out, transform 300ms ease-out
+	transition: opacity 700ms ease-out, transform 500ms ease-out
 	will-change: opacity, visibility
 
 	&.in-view
