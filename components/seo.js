@@ -5,6 +5,20 @@ const Meta = ({metadata, googleAnalyticsId, yandexMetrikaId}) => (
 		<meta charSet="utf-8"/>
 		<title>{metadata.title}</title>
 		<link
+			rel="preload"
+			href="/fonts/Montserrat-Regular.woff2"
+			as="font"
+			type="font/woff2"
+			crossOrigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/Montserrat-Bold.woff2"
+			as="font"
+			type="font/woff2"
+			crossOrigin="anonymous"
+		/>
+		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
 			href="/favicons/apple-touch-icon.png"
@@ -32,6 +46,7 @@ const Meta = ({metadata, googleAnalyticsId, yandexMetrikaId}) => (
 		<meta name="theme-color" content="#a6a6a6"/>
 		<link rel="shortcut icon" href="/favicons/favicon.ico"/>
 
+		<link rel="canonical" href="https://престиж-ремонт.рф"/>
 		<meta name="robots" content="follow, index"/>
 
 		{process.env.NODE_ENV === "production" && googleAnalyticsId && (
