@@ -1,16 +1,14 @@
 import { Fragment } from "react"
-import Meta from "./meta"
+import Seo from "./seo"
 import Copyright from "./copyright"
-import getConfig from "next/config"
-
-const config = getConfig().publicRuntimeConfig
+import DATA from "~/core/constants"
 
 
 const Layout = ({ children }) => (
   <Fragment>
-    <Meta {...config} />
+    <Seo {...DATA} />
     <main id="main">{children}</main>
-    <Copyright {...config.metadata} />
+    <Copyright {...DATA} />
   </Fragment>
 )
 

@@ -104,13 +104,11 @@ $ git push origin
 
 If you want to view a compiled site on github.io, please, read [Deploying on Github Pages](https://create-react-app.dev/docs/deployment/#github-pages) docs for React.
 
-#### Deploying to Netlify
+### Deploy on Vercel
 
-Site deploys and builds automatically and hosted directly with [Netlify](https://app.netlify.com) by linking prestige-remont repository on Github.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-[![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/starck43/prestige-remont)
-
-For more information, read [hosting on Netlify](https://create-react-app.dev/docs/deployment/#netlify).
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Technologies Used
 

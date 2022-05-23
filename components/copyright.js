@@ -5,10 +5,7 @@ export default function Copyright({ title, author, authorUrl }) {
   return (
     <small className="copyright centered">
       <span>
-        © {getYear()} {title}{" "}
-      </span>
-      <span>
-        [ разработчик <a href={authorUrl}>{author}</a> ]
+        © {getYear()} {title}{" "} [ разработчик <a href={authorUrl}>@{author}</a> ]
       </span>
     </small>
   )

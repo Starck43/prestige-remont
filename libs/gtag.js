@@ -1,8 +1,7 @@
-export const
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = url => {
-  window.gtag("config", GA_ANALYTICS_MEASUREMENT_ID, {
+  window.gtag("config", process.env.GA_ANALYTICS_MEASUREMENT_ID, {
     page_path: url,
   })
 }
