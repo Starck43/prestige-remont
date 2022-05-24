@@ -12,19 +12,12 @@ module.exports = {
         allow: "/*",
       },
       {
-        userAgent: "*",
-        disallow: "/api",
-      },
-      {
-        userAgent: "*",
         disallow: "*/?",
       },
       {
-        userAgent: "*",
         disallow: "/search/?q=",
       },
       {
-        userAgent: "*",
         disallow: "/api/*",
       },
     ],
