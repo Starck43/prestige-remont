@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import parse from "html-react-parser"
 //import Fade from "react-reveal/Fade"
 import Image from "next/image"
-import { FadeSection } from "./UI/section"
+
 
 import { srcSet2Obj } from "../core/helpers/utils"
 import { AnimationText } from "./AnimationText"

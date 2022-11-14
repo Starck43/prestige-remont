@@ -1,7 +1,7 @@
 // import getConfig from 'next/config'
 
 export const isSafari = () => {
-  var userAgent = navigator.userAgent.toLowerCase()
+  let userAgent = navigator.userAgent.toLowerCase()
   return /^((?!chrome|android).)*safari/i.test(userAgent)
 }
 
