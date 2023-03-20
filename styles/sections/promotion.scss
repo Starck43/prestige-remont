@@ -1,4 +1,4 @@
-@import "../vars.module";
+@import "../vars";
 
 #promotion {
 	background-color: $bg-color-2;
@@ -6,6 +6,8 @@
 	.container {
 		width: 100%;
 		max-width: 800px;
+		margin: auto;
+		gap: 2rem;
 	}
 
 	ol {
@@ -35,10 +37,5 @@
 			font-weight: 500;
 		}
 
-		@include media-breakpoint-between(md, lg) {
-			&::before {
-				font-size: 14vh;
-			}
-		}
 	}
 }

@@ -1,23 +1,10 @@
 module.exports = {
-	"presets": [
-		[
-			"next/babel",
-		]
-	],
-	"plugins": [
-		[
-			"babel-plugin-root-import"
-		],
-		[
-			"styled-components",
-			{
-				"ssr": true,
-				"displayName": true,
-				"preprocess": false
-			}
-		],
-		[
-			"macros"
-		],
-	]
+    presets: [["next/babel"]],
+    plugins: [
+        [
+            "babel-plugin-direct-import",
+            { modules: ["@mui/material", "@mui/icons-material"] },
+        ],
+        ["inline-react-svg"],
+    ],
 }

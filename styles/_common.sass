@@ -1,0 +1,41 @@
+@import "vars"
+@import "mixins"
+
+.centered
+	display: flex
+	justify-content: center
+	align-items: center
+
+.rounded
+	border-radius: $border-radius
+
+.flex-wrap
+	display: flex
+	flex-wrap: wrap
+	&.end
+		justify-content: flex-end
+		text-align: right
+
+	&.center
+		justify-content: center
+		text-align: center
+
+	&.space-between
+		justify-content: space-between
+
+.flex-column
+	display: flex
+	flex-direction: column
+	&.end
+		align-items: flex-end
+	&.center
+		align-items: center
+
+.gap-1
+	gap: 1rem
+
+.gap-2
+	gap: 1.5rem
+
+.gap-3
+	gap: 2rem

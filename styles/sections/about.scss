@@ -1,29 +1,19 @@
 #about-us {
 	.content {
-		display: flex;
 		position: relative;
-		justify-content: center;
-
-		.title {
-			flex: 100%;
-			text-align: center;
-		}
-
+		justify-content: space-between;
+		flex-direction: unset;
+		gap: 2rem;
 		.img-wrapper {
-			margin-top: 2rem;
 			max-width: 450px;
 			> span {
 				background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2));
 			}
 		}
-		@include media-breakpoint-up(md){
+
+		@media (min-width: 576px) {
 			.title ~ * {
 				flex: 1;
-			}
-			.img-wrapper {
-				margin-top: 0;
-				margin-left: 2rem;
-
 			}
 		}
 	}

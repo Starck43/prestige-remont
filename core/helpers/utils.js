@@ -1,57 +1,72 @@
-// import getConfig from 'next/config'
+export const classnames = (
+    cls = null,
+    classes = [],
+    dict = {},
+    additional = []
+) => {
+    if (!cls) return [...additional.filter(Boolean)].join(" ")
 
-export const isSafari = () => {
-  let userAgent = navigator.userAgent.toLowerCase()
-  return /^((?!chrome|android).)*safari/i.test(userAgent)
+    return [
+        ...classes
+            .filter(Boolean)
+            .map(classname => (classname ? cls[classname] : null)),
+        ...Object.entries(dict)
+            .filter(([_, value]) => Boolean(value))
+            .map(([classname, _]) => (classname ? cls[classname] : null)),
+        ...additional.filter(Boolean),
+    ].join(" ")
 }
 
 export const getWindowDimensions = () => {
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    ratio: window.innerWidth / window.innerHeight,
-  }
+    if (typeof window === "undefined") {
+        return {
+            width: 0,
+            height: 0,
+            ratio: 0,
+        }
+    }
+
+    return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        ratio: window.innerWidth / window.innerHeight,
+    }
 }
 
 export const getYear = () => {
-  return new Date().getFullYear()
+    return new Date().getFullYear()
 }
 
 export const srcSet2Obj = str => {
-  if (!str) return null
+    if (!str) return null
 
-  let srcArray = str.split(",")
-  return srcArray.reduce((obj, cur) => {
-    let arr = cur.trim().split(" ")
-    return {
-      ...obj,
-      [arr[1]]: arr[0],
-    }
-  }, {})
+    return str.split(",").reduce((acc, cur) => {
+        let arr = cur.trim().split(" ")
+        return {
+            ...acc,
+            [arr[1]]: arr[0],
+        }
+    }, {})
 }
 
 export const array2Obj = array => {
-  return array.reduce((obj, cur) => {
-    return {
-      ...obj,
-      [cur.slug]: cur,
-    }
-  }, {})
+    return array.reduce((acc, cur) => {
+        return {
+            ...acc,
+            [cur.slug]: cur,
+        }
+    }, {})
 }
 
-export const absoluteUrl = url => {
-  if (url && url.indexOf("http", 0) === -1) return process.env.SERVER + url
-  return url
-}
-
-export const truncateHTML = (value, n = 200) => {
-  let t = value.substring(0, n) // first cut
-  let tr = t.replace(/<(.*?[^\/])>.*?<\/\1>|<.*?\/>/, "") // remove opened+closed tags
-  // capture open tags
-  let ar = tr.match(
-    /<((?!li|hr|img|br|area|base|col|command|embed|input|keygen|link|meta|head|param|source|track|wbr).*?)>/g
-  )
-
-  if (ar) return t + "&hellip;" + ar.reverse().join("").replace(/</g, "</") // close tags
-  return value
-}
+export const createSrcSet = srcset =>
+    srcset.reduce((acc, value, index) => {
+        let arr = value.match(/(?!_)\d+w/g)
+        if (!arr) return acc
+        return (
+            acc +
+            value +
+            " " +
+            arr.pop() +
+            (index < srcset.length - 1 ? ", " : "")
+        )
+    }, "")

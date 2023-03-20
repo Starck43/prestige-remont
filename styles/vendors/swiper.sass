@@ -1,0 +1,22 @@
+@import ../vars
+@import ../mixins
+
+\:root
+	--swiper-theme-color: #{$brand-color-hover} !important
+	--swiper-pagination-bullet-inactive-color: #fff
+	--swiper-pagination-bullet-inactive-opacity: 0.4
+
+.swiper
+	overflow: unset
+.swiper-wrapper
+	max-height: 100vh !important
+
+.swiper-slide-zoomed
+	img
+		min-width: 100vw
+		min-height: 100vh
+		padding: 0
+		object-fit: cover !important
+
+	figcaption, .swiper-fraction
+		display: none

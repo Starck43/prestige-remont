@@ -1,0 +1,32 @@
+@import "/styles/vars"
+@import "/styles/mixins"
+
+.input__text
+	min-height: 2.2rem
+	width: 100%
+	padding-top: 5px
+	padding-bottom: 3px
+
+.input__textarea
+	height: 120px
+	max-width: 100%
+	overflow: hidden
+
+.input
+	min-height: 2em
+	width: 100%
+	padding: 0.7em 1em
+	color: #000
+	background-color: transparent
+	border: 1px solid $brand-color-hover
+	border-radius: $border-radius
+
+	&.rounded
+		border-radius: $border-radius
+
+	&:focus
+		color: #000
+		background-color: $bg-color-2
+
+	&.readonly
+		opacity: 0.7

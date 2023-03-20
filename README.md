@@ -15,7 +15,7 @@ SSR site written on React/Gatsby with headless CMS and hosted on Netlify server
 
  - `gatsby-config.js` - to change plugin's settings and metadata for SEO
  - `src/main.js` - to change additional personal data and API url
- - `src/pages/index.js` - main page index.html
+ - `src/pages/index.jsx` - main page index.html
  - `src/templates/portfolio.js` - porfolio pages template (output files: <project-name.html>)
 
 ### Main page sections

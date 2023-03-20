@@ -1,4 +1,4 @@
-@import "../vars.module";
+@import "../vars";
 
 
 #navbar {
@@ -7,59 +7,33 @@
 	left: 0;
 	width: 100%;
 	z-index: 2;
+}
 
-	.navbar-wrapper {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		padding: 2rem;
-		justify-content: space-between;
+.navbar-items {
+	min-width: 300px;
+	padding: 0 1rem;
+	background-color: transparentize(white, 0.7);
+	> a {
+		text-decoration: none;
+		padding: 0.75rem;
+		font-family: "Open Sans", sans-serif;
+		transition: all 0.2s ease;
+		border-bottom: 1px solid transparent;
+		text-shadow: 0 1px 1px white;
 
-		.navbar-items {
-			margin-top: 0;
-			> * {
-				text-decoration: none;
-				padding: 0.2rem 0;
-				margin-left: 2rem;
-				font-family: "Open Sans", sans-serif;
-				color: #000;
-				opacity: 0.8;
-				transition: all 0.2s ease;
-				text-align: right;
-				font-size: 1rem;
-				font-weight: normal;
-				background-color: transparent;
-				text-shadow: 0 1px 1px white;
-				outline: none;
-				border: 0;
-				cursor: pointer;
-
-				&:hover {
-					opacity: 1;
-					border-bottom: 1px solid $brand-color-hover
-				}
-			}
-
-			.active {
-				color: black;
-			}
-
-
-		}
-
-		@media (max-width: 575.98px) and (orientation: portrait) {
-			.navbar-items {
-				margin-top: 2rem;
-			}
-			flex-direction: column;
+		&:hover {
+			background-color: white;
 		}
 	}
+
 }
 
 
-#logo {
+.logo {
 	position: relative;
-
+	margin: 0 1.75rem;
+	pointer-events: none;
+	user-select: none;
 	* {
 		font-family: sans-serif;
 	}

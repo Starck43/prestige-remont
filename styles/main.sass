@@ -1,80 +1,13 @@
-@import vars.module
+@import vars
 @import mixins
+@import common
+@import reset
 @import fonts
 
-
-.centered
-	display: flex
-	justify-content: center
-	align-items: center
-
-.rounded
-	border-radius: 50rem
-
-.flex-wrap
-	display: flex
-
-	&.end
-		justify-content: flex-end
-		text-align: right
-
-	&.center
-		justify-content: center
-		text-align: center
-
-	&.space-between
-		justify-content: space-between
-
-.flex-column
-	display: flex
-	&.end
-		align-items: flex-end
-	&.center
-		align-items: center
-
-
 html
-	font-size: 14px
-	+media-breakpoint-up(md)
-		font-size: 16px
-	+media-breakpoint-up(lg)
-		font-size: 18px
+	font-family: "Montserrat", Tahoma, Arial, serif
+	font-size: 16px
 	background-color: $bg-color
-
-a
-	color: $link-color
-	text-decoration: none
-	transition: 0.2s all ease
-	&:hover
-		color: $brand-color-hover
-
-.btn-primary
-	border-color: $brand-color
-	background-color: $brand-color
-	transition: 0.2s all ease
-	&:hover
-		background-color: $brand-color-hover
-		border-color: $brand-color-hover
-
-
-.btn-outline-primary
-	color: $link-color
-	border-color: $brand-color
-	transition: 0.2s all ease
-	&:hover
-		background-color: $brand-color
-		border-color: $brand-color-hover
-
-
-\:root
-	--bs-font-sans-serif: #{$font-family-sans-serif}
-	--bs-body-color: #{$text-color}
-	--bs-body-bg: #{$bg-color}
-	--bs-primary: #{$brand-color}
-
-body
-	min-height: 100vh
-	scroll-behavior: smooth
 
 #__next
 	display: flex
@@ -82,76 +15,51 @@ body
 	min-height: 100vh
 	height: 100%
 
+body
+	min-height: 100vh
+	scroll-behavior: smooth
+
 main
 	flex: 1
 	scroll-behavior: smooth
+	overflow: hidden
 
 	section
 		flex: 100%
 
 section
-	padding: 4rem 4vw
-	//margin-bottom: 8vh
-	+media-breakpoint-up(sm)
-		padding: 4rem
+	flex-direction: column
+	padding: calc(2rem + 4vw) 4vw
+
 
 .container
 	width: 100%
 	max-width: 1200px
 
-h1
-	color: $brand-color-hover
-	font-size: 2.2rem
-	font-weight: bold
-	+media-breakpoint-up(sm)
-		font-size: 2.6rem
-
-	+media-breakpoint-up(md)
-		font-size: 3.2rem
-
-h2
-	font-size: 1.8rem
-	+media-breakpoint-up(sm)
-		font-size: 2.2rem
-
-	+media-breakpoint-up(md)
-		font-size: 2.8rem
+.content
+	display: flex
+	flex-wrap: wrap
+	flex-direction: column
+	gap: 2rem
 
 .title
-	margin-bottom: 3rem
+	margin: 0
 	color: $title-color
-	text-shadow: 0 1px 2px white
+	text-shadow: 0 1px 1px white
 	text-align: center
 	font-weight: bold
 	flex: 100%
 
-.fade-section
-	opacity: 0
-	transform: translate(0, $fade-section-offset)
-	//visibility: hidden
-	transition: opacity 700ms ease-out, transform 500ms ease-out
-	//will-change: opacity, visibility
-
-	&.in-view
-		opacity: 1
-		transform: none
-		visibility: visible
-		display: flex
-
-.img-wrapper > span
-	background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.2)) !important
 
 
 // Components
-
-@import "./vendors/carousel"
-@import "./contactform"
-
 @import "./sections/navbar"
 @import "./sections/header"
-@import "sections/portfolio"
 @import "./sections/about"
+@import "./sections/portfolio"
 @import "./sections/offers"
 @import "./sections/promotion"
 @import "./sections/skills"
 @import "./sections/footer"
+
+@import "./vendors/swiper"

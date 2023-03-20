@@ -1,0 +1,99 @@
+@import /styles/mixins
+@import /styles/vars
+
+
+$slider-h: 100vh
+
+
+.slider__container
+	position: relative
+	height: $slider-h
+	width: 100vw
+
+.swiper__slide
+	height: $slider-h
+
+.swiper__zoom__container
+	position: relative
+	margin: auto
+
+.img
+	position: relative
+	display: block
+	max-height: $slider-h
+	padding: $lightbox-controls-margin
+	inset: 0
+
+
+.slide__caption
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	margin: $lightbox-controls-margin
+	color: $lightbox-controls-color
+	transition: all 300ms ease
+	user-select: none
+	.slide__title
+		margin: 0.5rem 0
+		text-align: center
+	.slide__subtitle
+		display: table
+		font-size: 0.9rem
+		text-align: left
+		+push--auto
+		margin-bottom: 0
+
+	&.hide
+		opacity: 0
+		visibility: hidden
+	&.show
+		opacity: 1
+		visibility: visible
+		&:hover
+			background-color: transparentize(white, 0.5)
+
+
+.swiper__control
+	&__prev,
+	&__next
+		position: absolute
+		top: 50%
+		width: 4rem
+		padding: 1rem
+		background-color: transparentize($lightbox-controls-bg-color, 0.5)
+		transform: translateY(-50%)
+		overflow: hidden
+		transition: all 200ms ease-out
+		z-index: 1
+		.arrow
+			&::before, &::after
+				background-color: $lightbox-controls-color
+		&:hover
+			background-color: $lightbox-controls-bg-color
+		&:focus-visible
+			outline: none
+		&.disabled
+			display: none
+
+	&__prev
+		left: $lightbox-controls-margin
+
+	&__next
+		right: $lightbox-controls-margin
+
+.swiper__fraction
+	position: fixed
+	left: $lightbox-controls-margin
+	top: $lightbox-controls-margin
+	padding: 0.8rem
+	color: $lightbox-controls-color
+	z-index: 1
+	&.disabled
+		opacity: 0
+
+.arrow
+	width: 100%
+	height: 100%
+	&.right
+		transform: rotate(180deg)

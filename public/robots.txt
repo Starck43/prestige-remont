@@ -3,4 +3,4 @@ Allow: /*
 
 Disallow: */?
 Disallow: /search/?q=
-Disallow: /api/*
+Disallow: /fetcher/*

@@ -1,0 +1,18 @@
+.text
+	display: inline-block
+
+.letter
+	opacity: 0
+	display: inline-block
+	animation-name: letter-animation
+	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1)
+	animation-fill-mode: forwards
+
+	@keyframes letter-animation
+		0%
+			opacity: 0
+			transform: translateY(1rem)
+
+		100%
+			opacity: 1
+			transform: unset
