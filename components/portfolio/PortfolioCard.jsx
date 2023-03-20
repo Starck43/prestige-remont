@@ -1,22 +1,26 @@
-import React, { memo, useMemo, useState } from "react"
+import React, { memo, useCallback, useMemo, useState } from "react"
 import Image from "next/image"
 
 import IconButton from "@mui/material/Button"
 import TouchAppIcon from "@mui/icons-material/TouchApp"
 import { srcSet2Obj } from "/core/helpers/utils"
+import { HtmlContent } from "../UI/Html-content"
 
 export const PortfolioCard = memo(
     ({ id, title, excerpt, featuredImage, onPortfolioClick }) => {
         const [imageLoaded, setImageLoaded] = useState(false)
         const image = featuredImage?.node
-        const srcSet = useMemo(() => srcSet2Obj(image.srcSet), [])
+        const srcSet = useMemo(() => srcSet2Obj(image.srcSet), [image.srcSet])
 
-        // const srcSet = srcSet2Obj(featuredImage?.node.srcSet)
-
-        const remoteLoader = ({ src, width }) => {
-            let curKey = Object.keys(srcSet).find(key => key === width + "w")
-            return srcSet[curKey] || src
-        }
+        const remoteLoader = useCallback(
+            ({ src, width }) => {
+                let curKey = Object.keys(srcSet).find(
+                    key => key === width + "w"
+                )
+                return srcSet[curKey] || src
+            },
+            [srcSet]
+        )
 
         return (
             <>
@@ -34,7 +38,7 @@ export const PortfolioCard = memo(
                         height={0}
                         alt={image?.altText}
                         placeholder="blur"
-                        blurDataURL={srcSet["320w"]}
+                        blurDataURL={srcSet?.["320w"]}
                         onLoadingComplete={() => setImageLoaded(true)}
                     />
                     <IconButton>
@@ -44,10 +48,9 @@ export const PortfolioCard = memo(
                 <div className="description flex-column">
                     <h3 className="portfolio-title">{title}</h3>
                     {excerpt && (
-                        <p
-                            className="text"
-                            dangerouslySetInnerHTML={{ __html: excerpt }}
-                        />
+                        <HtmlContent Tag="p" className="text">
+                            {excerpt}
+                        </HtmlContent>
                     )}
                 </div>
             </>

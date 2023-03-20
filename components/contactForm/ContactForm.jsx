@@ -1,3 +1,6 @@
+import { useState } from "react"
+import axios from "axios"
+
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/Button"
 import CloseIcon from "@mui/icons-material/Close"
@@ -11,8 +14,22 @@ import { Input } from "/components/UI/input"
 import cls from "./ContactForm.module.sass"
 
 export const ContactForm = ({ open, onCloseHandler }) => {
-    const sendMessage = e => {
-        e.preventDefault()
+    const [message, setMessage] = useState({ name: "", email: "", body: "" })
+    const sendMessage = () => {
+        axios({
+            method: "POST",
+            url: process.env.SERVER + process.env.API_ENDPOINTS.sendMessage,
+            data: message,
+        }).then(response => {
+            response.status === 200
+                ? console.log(response.data.message)
+                : console.log(response.data.message)
+        })
+    }
+
+    const changeMessage = (field, value) => {
+        setMessage({ ...message, [field]: value })
+        console.log(value)
     }
 
     return (
@@ -32,13 +49,22 @@ export const ContactForm = ({ open, onCloseHandler }) => {
                 Ваше сообщение
             </DialogTitleWithClose>
             <DialogContent dividers className="flex-column gap-2">
-                <Input name="name" placeholder="Ваше имя" />
-                <Input name="email" placeholder="E-mail" />
+                <Input
+                    value={message.name}
+                    placeholder="Ваше имя"
+                    onChange={e => changeMessage("name", e.target.value)}
+                />
+                <Input
+                    value={message.email}
+                    placeholder="E-mail"
+                    onChange={e => changeMessage("email", e.target.value)}
+                />
                 <textarea
-                    name="text"
+                    value={message.body}
                     rows={4}
                     required
                     placeholder="Текст сообщения"
+                    onChange={e => changeMessage("body", e.target.value)}
                 />
             </DialogContent>
             <DialogActions>
