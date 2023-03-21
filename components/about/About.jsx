@@ -1,25 +1,24 @@
 import { useRef } from "react"
 import parse from "html-react-parser"
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 import { Container } from "/components/UI/Container"
 import { FadeSection } from "/components/UI/animation/FadeSection"
 import { AnimationText } from "/components/UI/animation/AnimationText"
 import { useInViewport } from "/core/hooks/useInViewport"
-import { srcSet2Obj } from "/core/helpers/utils"
-//import Fade from "react-reveal/Fade"
+import { srcSet2Array } from "/core/helpers/utils"
 
 export const About = ({ title, slug, content, featuredImage }) => {
     const observer = useRef()
     const inView = useInViewport({ trigger: observer })
 
     let image = featuredImage?.node
-    let srcSet = srcSet2Obj(image?.srcSet)
+    let srcSet = srcSet2Array(image?.srcSet)
 
-    const remoteLoader = ({ src, width }) => {
+    /*    const remoteLoader = ({ src, width }) => {
         let curKey = Object.keys(srcSet).find(key => key === width + "w")
         return srcSet[curKey] || src
-    }
+    }*/
 
     return (
         <FadeSection
@@ -40,15 +39,16 @@ export const About = ({ title, slug, content, featuredImage }) => {
                     <div className="img-wrapper">
                         {image?.sourceUrl && (
                             <Image
-                                loader={remoteLoader}
+                                //loader={remoteLoader}
                                 src={image.sourceUrl}
+                                srcSet={srcSet?.[0]}
                                 alt={image.altText}
-                                layout="intrinsic"
+                                //layout="intrinsic"
                                 width={image.mediaDetails.width}
                                 height={image.mediaDetails.height}
-                                quality={85}
+                                //quality={85}
                                 placeholder="blur"
-                                blurDataURL={srcSet["320w"]}
+                                blurDataURL={srcSet?.[0] || image.sourceUrl}
                                 unoptimized
                             />
                         )}

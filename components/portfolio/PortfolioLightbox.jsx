@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react"
-import { Portal, Backdrop, CircularProgress, IconButton } from "@mui/material"
-import { Close } from "@mui/icons-material"
+import { CircularProgress, IconButton, Portal } from "@mui/material"
+import Backdrop from "@mui/material/Backdrop"
+import Close from "@mui/icons-material/Close"
 import parse from "html-react-parser"
 
-import useSWR from "swr"
 import { Slider } from "/components/UI/slider/Slider"
-
-import { fetcher } from "/core/api/fetcher"
-import { getPostQuery } from "/core/api/graphql"
 import { usePortfolioLoading } from "/core/hooks/usePostsLoading"
 
 export const PortfolioLightbox = ({ portfolioId, handleClose }) => {
@@ -21,11 +18,13 @@ export const PortfolioLightbox = ({ portfolioId, handleClose }) => {
             const images = []
             parse(post.content, {
                 replace: domNode => {
+                    console.log(domNode)
+
                     domNode.name === "img" &&
                         images.push({
                             ...domNode.attribs,
                             id: domNode.attribs["data-id"],
-                            src: domNode.attribs["data-full-url"],
+                            src: domNode.attribs["src"],
                         })
                 },
             })

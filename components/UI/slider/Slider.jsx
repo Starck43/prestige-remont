@@ -47,14 +47,6 @@ export const Slider = ({
         carouselRef.current?.swiper.slideNext()
     }
 
-    /*
-	let srcSet = srcSet2Obj(obj.srcset)
-	const remoteLoader = ({ src, width }) => {
-		let curKey = Object.keys(srcSet).find(key => key === width + "w")
-		return srcSet[curKey] || src
-	}
-	*/
-
     return slides?.length > 0 || children ? (
         <div className={classnames(cls, ["slider__container"], {}, [label])}>
             <Swiper

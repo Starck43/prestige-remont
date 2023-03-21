@@ -4,15 +4,15 @@ import IconButton from "@mui/material/Button"
 import TouchAppIcon from "@mui/icons-material/TouchApp"
 
 import { HtmlContent } from "/components/UI/Html-content"
-import { srcSet2Obj } from "/core/helpers/utils"
+import { srcSet2Array } from "/core/helpers/utils"
 
 export const PortfolioCard = memo(
     ({ id, title, excerpt, featuredImage, onPortfolioClick }) => {
         const [imageLoaded, setImageLoaded] = useState(false)
         const image = featuredImage?.node
-        const srcSet = useMemo(() => srcSet2Obj(image.srcSet), [image.srcSet])
+        const srcSet = useMemo(() => srcSet2Array(image.srcSet), [image.srcSet])
 
-        const remoteLoader = useCallback(
+        /*        const remoteLoader = useCallback(
             ({ src, width }) => {
                 let curKey = Object.keys(srcSet).find(
                     key => key === width + "w"
@@ -20,7 +20,7 @@ export const PortfolioCard = memo(
                 return srcSet[curKey] || src
             },
             [srcSet]
-        )
+        )*/
 
         return (
             <>
@@ -29,20 +29,22 @@ export const PortfolioCard = memo(
                     className={`img-wrapper ${imageLoaded ? "loaded" : ""}`}
                     onClick={() => onPortfolioClick(id)}
                 >
-                    <Image
-                        src={imageLoaded ? image.sourceUrl : srcSet?.["320w"]}
-                        srcSet={image?.srcSet}
-                        loader={remoteLoader}
-                        layout="fill"
-                        //objectFit="cover"
-                        sizes="100%"
-                        height={0}
-                        alt={image?.altText}
-                        unoptimized
-                        placeholder="blur"
-                        blurDataURL={srcSet?.["320w"]}
-                        onLoadingComplete={() => setImageLoaded(true)}
-                    />
+                    {image?.sourceUrl && (
+                        <Image
+                            src={imageLoaded ? image.sourceUrl : srcSet?.[0]}
+                            srcSet={image?.srcSet}
+                            //loader={remoteLoader}
+                            layout="fill"
+                            //objectFit="cover"
+                            sizes={image?.sizes || "100%"}
+                            height={0}
+                            alt={image?.altText}
+                            unoptimized
+                            placeholder="blur"
+                            blurDataURL={srcSet?.[0] || image.sourceUrl}
+                            onLoadingComplete={() => setImageLoaded(true)}
+                        />
+                    )}
                     <IconButton>
                         <TouchAppIcon />
                     </IconButton>

@@ -3,29 +3,29 @@ import Image from "next/image"
 import parse from "html-react-parser"
 
 import { FadeSection } from "/components/UI/animation/FadeSection"
-import { srcSet2Obj } from "/core/helpers/utils"
+import { srcSet2Array } from "/core/helpers/utils"
 
 export const Header = memo(({ title, slug, content, featuredImage }) => {
     const [imageLoaded, setImageLoaded] = useState(false)
     const headerRef = useRef()
 
     const image = featuredImage?.node
-    const srcSet = useMemo(() => srcSet2Obj(image.srcSet), [image.srcSet])
+    const srcSet = useMemo(() => srcSet2Array(image.srcSet), [image.srcSet])
 
-    const remoteLoader = useCallback(
+    /*    const remoteLoader = useCallback(
         ({ src, width }) => {
             let curKey = Object.keys(srcSet).find(key => key === width + "w")
             return srcSet[curKey] || src
         },
         [srcSet]
-    )
+    )*/
 
     return (
         <section ref={headerRef} id={slug}>
             {image?.sourceUrl && (
                 <Image
-                    loader={remoteLoader}
-                    src={imageLoaded ? image.sourceUrl : srcSet?.["320w"]}
+                    //loader={remoteLoader}
+                    src={imageLoaded ? image.sourceUrl : srcSet?.[0]}
                     srcSet={image.srcSet}
                     //layout="fill"
                     //objectFit="cover"
@@ -35,7 +35,7 @@ export const Header = memo(({ title, slug, content, featuredImage }) => {
                     alt={image.altText}
                     className="img-wrapper"
                     placeholder="blur"
-                    blurDataURL={srcSet["320w"]}
+                    blurDataURL={srcSet?.[0] || image.sourceUrl}
                     onLoadingComplete={() => setImageLoaded(true)}
                 />
             )}
