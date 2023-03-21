@@ -4,24 +4,17 @@ import { Close } from "@mui/icons-material"
 import parse from "html-react-parser"
 
 import useSWR from "swr"
-import { Slider } from "/components/UI/slider/slider"
+import { Slider } from "/components/UI/slider/Slider"
 
 import { fetcher } from "/core/api/fetcher"
 import { getPostQuery } from "/core/api/graphql"
+import { usePortfolioLoading } from "/core/hooks/usePostsLoading"
 
 export const PortfolioLightbox = ({ portfolioId, handleClose }) => {
     const [portfolio, setPortfolio] = useState([])
-    const { data, error } = useSWR(
-        process.env.GRAPHQL_URL + "/" + portfolioId,
-        () =>
-            fetcher(
-                process.env.GRAPHQL_URL,
-                { portfolioId },
-                getPostQuery(portfolioId)
-            )
-    )
 
-    const post = data?.data?.post
+    const { data, error } = usePortfolioLoading(portfolioId)
+    const post = data?.post
 
     useEffect(() => {
         if (post) {
