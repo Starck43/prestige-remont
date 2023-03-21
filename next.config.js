@@ -1,8 +1,10 @@
 const path = require("path")
 const isProduction = process.env.NODE_ENV === "production"
 const serverName = `https://${process.env.SERVER_HOST}`
-
-module.exports = {
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+    enabled: process.env.ANALYZE === "true",
+})
+module.exports = withBundleAnalyzer({
     reactStrictMode: true,
     trailingSlash: true,
     swcMinify: isProduction,
@@ -64,4 +66,4 @@ module.exports = {
             },
         ]
     },
-}
+})
