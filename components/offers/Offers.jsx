@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import parse from "html-react-parser"
 
 import Accordion from "@mui/material/Accordion"
@@ -6,7 +6,7 @@ import AccordionDetails from "@mui/material/AccordionDetails"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp"
 
-import { Title } from "/components/UI/title"
+import { AnimationText } from "/components/UI/animation/AnimationText"
 import { Container } from "/components/UI/Container"
 import { FadeSection } from "/components/UI/animation/FadeSection"
 import { useInViewport } from "/core/hooks/useInViewport"
@@ -71,7 +71,11 @@ export const Offers = ({ title, slug, content }) => {
         >
             <Container>
                 <article className="content">
-                    {inView && <Title>{title}</Title>}
+                    {
+                        <AnimationText Tag="h2" show={inView}>
+                            {title}
+                        </AnimationText>
+                    }
                     {offers.map((offer, index) => (
                         <FadeSection
                             Tag={Accordion}

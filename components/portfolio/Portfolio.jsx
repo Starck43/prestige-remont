@@ -2,7 +2,7 @@ import { useRef } from "react"
 import dynamic from "next/dynamic"
 
 import { FadeSection } from "/components/UI/animation/FadeSection"
-import { Title } from "/components/UI/title"
+import { AnimationText } from "/components/UI/animation/AnimationText"
 
 import { useInViewport } from "/core/hooks/useInViewport"
 
@@ -24,7 +24,11 @@ export const Portfolio = ({ title, slug }) => {
             translate={[0, "20vh"]}
         >
             <div className="content">
-                {inView && <Title>{title}</Title>}
+                {
+                    <AnimationText Tag="h2" show={inView}>
+                        {title}
+                    </AnimationText>
+                }
                 {inView && <LazyPortfolio />}
             </div>
         </FadeSection>

@@ -9,6 +9,8 @@ export const Input = forwardRef((props, ref) => {
         value = "",
         rounded = false,
         readonly = false,
+        required = false,
+        placeholder = "",
         onChange,
         className,
         ...other
@@ -24,14 +26,16 @@ export const Input = forwardRef((props, ref) => {
             type={type}
             value={value}
             readOnly={readonly}
-            {...other}
+            required={required}
+            placeholder={required ? "Поле должно быть заполнено!" : placeholder}
             onChange={onChangeHandler}
             className={classnames(
                 cls,
                 ["input__text", "input"],
-                { rounded, readonly },
+                { rounded, readonly, required },
                 [className]
             )}
+            {...other}
         />
     )
 })
@@ -41,6 +45,8 @@ export const TextArea = memo(props => {
         value = "",
         rounded = false,
         readonly = false,
+        required = false,
+        placeholder = "",
         onChange,
         className,
         ...other
@@ -52,14 +58,16 @@ export const TextArea = memo(props => {
     return (
         <textarea
             value={value}
+            required={required}
+            placeholder={required ? "Поле должно быть заполнено!" : placeholder}
             onChange={onChangeHandler}
-            {...other}
             className={classnames(
                 cls,
                 ["input__textarea", "input"],
-                { rounded, readonly },
+                { rounded, readonly, required },
                 [className]
             )}
+            {...other}
         />
     )
 })

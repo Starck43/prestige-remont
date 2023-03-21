@@ -1,5 +1,4 @@
 import { useState } from "react"
-import axios from "axios"
 
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/Button"
@@ -8,28 +7,64 @@ import Dialog from "@mui/material/Dialog"
 import DialogContent from "@mui/material/DialogContent"
 import DialogActions from "@mui/material/DialogActions"
 import DialogTitle from "@mui/material/DialogTitle"
+import CircularProgress from "@mui/material/CircularProgress"
+import Alert from "@mui/material/Alert"
 
-import { Input } from "/components/UI/input"
+import { Input, TextArea } from "/components/UI/input"
+import { sendPostMessage } from "/core/api/api"
 
 import cls from "./ContactForm.module.sass"
 
 export const ContactForm = ({ open, onCloseHandler }) => {
-    const [message, setMessage] = useState({ name: "", email: "", body: "" })
-    const sendMessage = () => {
-        axios({
-            method: "POST",
-            url: process.env.SERVER + process.env.API_ENDPOINTS.sendMessage,
-            data: message,
-        }).then(response => {
-            response.status === 200
-                ? console.log(response.data.message)
-                : console.log(response.data.message)
-        })
+    const [message, setMessage] = useState({
+        name: undefined,
+        email: undefined,
+        body: undefined,
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const [data, setData] = useState(null)
+    const [validationErrors, setValidationErrors] = useState([])
+
+    const sendMessage = async () => {
+        const errors = []
+        if (message.name?.length < 3) {
+            errors.push("Имя должно быть не менее 3-х символов")
+        }
+        if (message.email?.length < 7) {
+            errors.push("E-mail должно быть не менее 7-ми символов")
+        }
+        if (message.body?.length < 10) {
+            errors.push("Сообщение должно быть не менее 10-ти символов")
+        }
+        if (message.body?.length > 250) {
+            errors.push("Сообщение должно быть не более 250-ти символов")
+        }
+        console.log(message)
+        const hasFilled = message.name && message.email && message.body
+        if (!errors.length && hasFilled) {
+            setValidationErrors([])
+            setIsLoading(true)
+            setData(null)
+            const res = await sendPostMessage(message)
+            setIsLoading(false)
+            setData(res)
+        } else {
+            console.log(errors)
+            if (!errors.length && !hasFilled) {
+                errors.push("Необходимо заполнить все поля")
+            }
+            setValidationErrors(errors)
+
+            setMessage({
+                name: message.name ?? "",
+                email: message.email ?? "",
+                body: message.body ?? "",
+            })
+        }
     }
 
     const changeMessage = (field, value) => {
         setMessage({ ...message, [field]: value })
-        console.log(value)
     }
 
     return (
@@ -48,30 +83,65 @@ export const ContactForm = ({ open, onCloseHandler }) => {
             >
                 Ваше сообщение
             </DialogTitleWithClose>
-            <DialogContent dividers className="flex-column gap-2">
+            <DialogContent
+                dividers
+                sx={{ position: "relative" }}
+                className="flex-column gap-1"
+            >
                 <Input
                     value={message.name}
+                    minlength={7}
+                    disabled={!!data}
                     placeholder="Ваше имя"
-                    onChange={e => changeMessage("name", e.target.value)}
+                    onChange={val => changeMessage("name", val)}
+                    required={message.name === ""}
                 />
                 <Input
                     value={message.email}
+                    minlength={3}
+                    disabled={!!data}
                     placeholder="E-mail"
-                    onChange={e => changeMessage("email", e.target.value)}
+                    onChange={val => changeMessage("email", val)}
+                    required={message.email === ""}
                 />
-                <textarea
+                <TextArea
                     value={message.body}
                     rows={4}
-                    required
-                    placeholder="Текст сообщения"
-                    onChange={e => changeMessage("body", e.target.value)}
+                    disabled={!!data}
+                    placeholder={"Текст сообщения"}
+                    onChange={val => changeMessage("body", val)}
+                    required={message.body === ""}
                 />
+                {validationErrors.length ? (
+                    <Alert severity="warning">
+                        {validationErrors.length === 1
+                            ? validationErrors[0]
+                            : validationErrors.map(error => (
+                                  <li key={error}>{error}</li>
+                              ))}
+                    </Alert>
+                ) : (
+                    data && <Alert severity={data.status}>{data.message}</Alert>
+                )}
+                {isLoading && (
+                    <span className={cls.loader}>
+                        <CircularProgress />
+                    </span>
+                )}
             </DialogContent>
-            <DialogActions>
-                <Button autoFocus onClick={sendMessage}>
-                    Отправить
+            <DialogActions sx={{ my: 1, mx: 2 }}>
+                {!data && (
+                    <Button
+                        autoFocus
+                        disabled={isLoading}
+                        onClick={sendMessage}
+                    >
+                        Отправить
+                    </Button>
+                )}
+                <Button onClick={onCloseHandler}>
+                    {data && !isLoading ? "Закрыть" : "Отменить"}
                 </Button>
-                <Button onClick={onCloseHandler}>Отменить</Button>
             </DialogActions>
         </Dialog>
     )

@@ -2,3 +2,12 @@
 @import "/styles/mixins"
 
 .dialog
+	display: block
+
+.loader
+	@include push--absolute()
+	display: flex
+	align-items: center
+	justify-content: center
+	background-color: transparentize(white, 0.3)
+	transition: all 300ms ease

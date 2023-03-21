@@ -20,7 +20,7 @@ export const Navbar = ({ nav }) => {
                 <NavLogo />
 
                 <div className={"navbar-items centered"}>
-                    {nav.map(node => (
+                    {nav?.map(node => (
                         <Link
                             key={node.databaseId}
                             href={

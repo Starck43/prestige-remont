@@ -1,10 +1,10 @@
 import React, { memo, useRef } from "react"
 import parse from "html-react-parser"
 
+import { Container } from "/components/UI/Container"
+import { AnimationText } from "/components/UI/animation/AnimationText"
+import { FadeSection } from "/components/UI/animation/FadeSection"
 import { useInViewport } from "/core/hooks/useInViewport"
-import { Container } from "../UI/Container"
-import { Title } from "../UI/title"
-import { FadeSection } from "../UI/animation/FadeSection"
 
 export const Promotion = memo(({ title, slug, content }) => {
     const observer = useRef()
@@ -19,7 +19,11 @@ export const Promotion = memo(({ title, slug, content }) => {
             translate={[0, "20vh"]}
         >
             <Container className="flex-column">
-                {inView && <Title>{title}</Title>}
+                {
+                    <AnimationText Tag="h2" show={inView}>
+                        {title}
+                    </AnimationText>
+                }
                 {parse(content)}
             </Container>
         </FadeSection>

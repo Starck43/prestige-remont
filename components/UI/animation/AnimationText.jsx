@@ -1,26 +1,46 @@
 import cls from "./AnimationText.module.sass"
 
-export const AnimationText = ({ children, animationTime = 50 }) => {
-    if (typeof children === "string") {
+const calcAnimation = (durationTime, animationTime, len, unit = 0) => {
+    return {
+        duration: durationTime + len ** 2 + unit,
+        delay: len * (animationTime + len) + unit,
+    }
+}
+
+export const AnimationText = ({
+    Tag = "span",
+    children,
+    show = false,
+    animationTime = 50,
+}) => {
+    if (show && typeof children === "string") {
         const arr = children.replace(/ /g, "\u00a0").split("")
-        const duration = arr.length * animationTime
+        const durationTime = arr.length * animationTime
 
         return (
-            <span className={cls.text}>
-                {arr.map((item, i) => (
-                    <span
-                        key={item + i}
-                        className={cls.letter}
-                        style={{
-                            animationDuration: `${duration + i ** 2}ms`,
-                            animationDelay: `${animationTime * i + i ** 2}ms`,
-                        }}
-                    >
-                        {item}
-                    </span>
-                ))}
-            </span>
+            <Tag className={cls.text}>
+                {arr.map((item, i) => {
+                    let { duration, delay } = calcAnimation(
+                        durationTime,
+                        animationTime,
+                        i,
+                        "ms"
+                    )
+                    return (
+                        <span
+                            key={item + i}
+                            className={cls.letter}
+                            style={{
+                                animationDuration: duration,
+                                animationDelay: delay,
+                            }}
+                        >
+                            {item}
+                        </span>
+                    )
+                })}
+            </Tag>
         )
     }
-    return children
+    return <Tag>{children}</Tag>
 }

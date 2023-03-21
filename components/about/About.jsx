@@ -1,11 +1,12 @@
-import React, { useRef } from "react"
+import { useRef } from "react"
 import parse from "html-react-parser"
 import Image from "next/legacy/image"
-import { srcSet2Obj } from "../../core/helpers/utils"
-import { useInViewport } from "../../core/hooks/useInViewport"
-import { Title } from "../UI/title"
-import { Container } from "../UI/Container"
-import { FadeSection } from "../UI/animation/FadeSection"
+
+import { Container } from "/components/UI/Container"
+import { FadeSection } from "/components/UI/animation/FadeSection"
+import { AnimationText } from "/components/UI/animation/AnimationText"
+import { useInViewport } from "/core/hooks/useInViewport"
+import { srcSet2Obj } from "/core/helpers/utils"
 //import Fade from "react-reveal/Fade"
 
 export const About = ({ title, slug, content, featuredImage }) => {
@@ -30,7 +31,11 @@ export const About = ({ title, slug, content, featuredImage }) => {
         >
             <Container>
                 <article className="content">
-                    {inView && <Title>{title}</Title>}
+                    {
+                        <AnimationText Tag="h2" show={inView}>
+                            {title}
+                        </AnimationText>
+                    }
                     {parse(content)}
                     <div className="img-wrapper">
                         {image?.sourceUrl && (

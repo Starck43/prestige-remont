@@ -3,7 +3,7 @@ import Card from "@mui/material/Card"
 
 import Image from "next/image"
 import CardContent from "@mui/material/CardContent"
-import { FadeSection } from "../UI/animation/FadeSection"
+import { FadeSection } from "/components/UI/animation/FadeSection"
 
 export const SkillCard = memo(({ skill, index, ...others }) => {
     const icon = require(`/public/icons/skills/skill${index + 1}.svg`)

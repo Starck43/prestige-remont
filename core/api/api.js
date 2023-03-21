@@ -1,4 +1,4 @@
-import useSWR from "swr"
+import axios from "axios"
 
 import { array2Obj } from "/core/helpers/utils"
 import { fetcher } from "./fetcher"
@@ -8,6 +8,28 @@ import {
     getMenuQuery,
     getPostQuery,
 } from "./graphql"
+
+export const sendPostMessage = data => {
+    return axios({
+        method: "POST",
+        url: process.env.SERVER + process.env.API_ENDPOINTS.sendMessage,
+        data,
+    })
+        .then(res => {
+            return {
+                data: res.data,
+                status: "success",
+                message: "Сообщение успешно отправлено!",
+            }
+        })
+        .catch(err => {
+            return {
+                data: err.response.data,
+                status: "error",
+                message: err.response.data.message,
+            }
+        })
+}
 
 export async function getPost(id) {
     const { data } = await fetcher(

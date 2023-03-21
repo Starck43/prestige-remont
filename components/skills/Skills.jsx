@@ -1,8 +1,9 @@
 import React, { useRef } from "react"
 import parse from "html-react-parser"
 import Grid from "@mui/material/Grid"
+
 import { FadeSection } from "/components/UI/animation/FadeSection"
-import { Title } from "/components/UI/title"
+import { AnimationText } from "/components/UI/animation/AnimationText"
 import { Container } from "/components/UI/Container"
 
 import { useInViewport } from "/core/hooks/useInViewport"
@@ -21,7 +22,11 @@ export const Skills = ({ title, content }) => {
             translate={[0, "20vh"]}
         >
             <Container className="flex-column">
-                {inView && <Title>{title}</Title>}
+                {
+                    <AnimationText Tag="h2" show={inView}>
+                        {title}
+                    </AnimationText>
+                }
                 <Grid container spacing={{ mobile: 2, tablet: 4 }}>
                     {[...parse(content, { trim: true })].map((item, i) => (
                         <Grid item mobile={12} tablet={6} desktop={4} key={i}>
