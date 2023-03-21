@@ -39,7 +39,7 @@ export const PortfolioCard = memo(
                             sizes={image?.sizes || "100%"}
                             height={0}
                             alt={image?.altText}
-                            unoptimized
+                            //unoptimized
                             placeholder="blur"
                             blurDataURL={srcSet?.[0] || image.sourceUrl}
                             onLoadingComplete={() => setImageLoaded(true)}

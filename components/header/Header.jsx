@@ -27,11 +27,9 @@ export const Header = memo(({ title, slug, content, featuredImage }) => {
                     //loader={remoteLoader}
                     src={imageLoaded ? image.sourceUrl : srcSet?.[0]}
                     srcSet={image.srcSet}
-                    //layout="fill"
-                    //objectFit="cover"
                     width={image.mediaDetails.width}
                     height={image.mediaDetails.height}
-                    // unoptimized
+                    //unoptimized
                     alt={image.altText}
                     className="img-wrapper"
                     placeholder="blur"

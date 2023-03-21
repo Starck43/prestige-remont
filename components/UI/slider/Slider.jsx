@@ -10,7 +10,7 @@ import "swiper/css/pagination"
 import "swiper/css/parallax"
 
 import { useWindowDimensions } from "/core/hooks/useWindowDimensions"
-import { classnames } from "/core/helpers/utils"
+import { classnames, srcSet2Array } from "/core/helpers/utils"
 import Arrow from "./chervon.svg"
 
 import cls from "./Slider.module.sass"
@@ -91,60 +91,78 @@ export const Slider = ({
             >
                 {children
                     ? children
-                    : slides.map(slide => (
-                          <SwiperSlide
-                              className={cls.swiper__slide}
-                              key={slide.id}
-                          >
-                              <span
-                                  className={classnames(
-                                      cls,
-                                      ["swiper__zoom__container"],
-                                      {},
-                                      ["swiper-zoom-container"]
-                                  )}
-                              >
-                                  <Image
-                                      className={classnames(cls, ["img"], {}, [
-                                          "swiper-zoom-target",
-                                          "swiper-lazy",
-                                      ])}
-                                      //src={slide.srcset.length > 0 ? slide.srcset[0] : slide.src}
-                                      src={slide.src}
-                                      srcSet={slide.srcset}
-                                      alt={slide.alt}
-                                      width={slide.width}
-                                      height={slide.height}
-                                  />
+                    : slides.map(slide => {
+                          const srcSet = srcSet2Array(slide?.srcSet)
+                          return (
+                              slide.src && (
+                                  <SwiperSlide
+                                      className={cls.swiper__slide}
+                                      key={slide.id}
+                                  >
+                                      <span
+                                          className={classnames(
+                                              cls,
+                                              ["swiper__zoom__container"],
+                                              {},
+                                              ["swiper-zoom-container"]
+                                          )}
+                                      >
+                                          <Image
+                                              className={classnames(
+                                                  cls,
+                                                  ["img"],
+                                                  {},
+                                                  [
+                                                      "swiper-zoom-target",
+                                                      "swiper-lazy",
+                                                  ]
+                                              )}
+                                              src={srcSet?.[0] || slide.src}
+                                              //src={slide.src}
+                                              srcSet={slide.srcset}
+                                              alt={slide.alt}
+                                              width={slide.width}
+                                              height={slide.height}
+                                              placeholder
+                                              blurDataURL={
+                                                  srcSet?.[0] || slide.src
+                                              }
+                                          />
 
-                                  <div className="swiper-lazy-preloader" />
-                              </span>
-                              {(title || slide.alt) && (
-                                  <figcaption className={cls.slide__caption}>
-                                      <h4
-                                          className={cls.slide__title}
-                                          data-swiper-parallax-opacity="0"
-                                          data-swiper-parallax="-300"
-                                          data-swiper-parallax-duration={
-                                              duration * 1.2
-                                          }
-                                      >
-                                          {title}
-                                      </h4>
-                                      <p
-                                          className={cls.slide__subtitle}
-                                          data-swiper-parallax-opacity="0"
-                                          data-swiper-parallax="-400"
-                                          data-swiper-parallax-duration={
-                                              duration * 1.5
-                                          }
-                                      >
-                                          {slide.alt}
-                                      </p>
-                                  </figcaption>
-                              )}
-                          </SwiperSlide>
-                      ))}
+                                          <div className="swiper-lazy-preloader" />
+                                      </span>
+                                      {(title || slide.alt) && (
+                                          <figcaption
+                                              className={cls.slide__caption}
+                                          >
+                                              <h4
+                                                  className={cls.slide__title}
+                                                  data-swiper-parallax-opacity="0"
+                                                  data-swiper-parallax="-300"
+                                                  data-swiper-parallax-duration={
+                                                      duration * 1.2
+                                                  }
+                                              >
+                                                  {title}
+                                              </h4>
+                                              <p
+                                                  className={
+                                                      cls.slide__subtitle
+                                                  }
+                                                  data-swiper-parallax-opacity="0"
+                                                  data-swiper-parallax="-400"
+                                                  data-swiper-parallax-duration={
+                                                      duration * 1.5
+                                                  }
+                                              >
+                                                  {slide.alt}
+                                              </p>
+                                          </figcaption>
+                                      )}
+                                  </SwiperSlide>
+                              )
+                          )
+                      })}
 
                 {label === "lightbox" && (
                     <div
