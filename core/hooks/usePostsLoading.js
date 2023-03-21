@@ -1,6 +1,12 @@
 import { useState } from "react"
+import useSWR from "swr"
+
 import { fetcher } from "/core/api/fetcher"
-import { getAllPostsQuery, getPerPagePostsQuery } from "../api/graphql"
+import {
+    getAllPostsQuery,
+    getPerPagePostsQuery,
+    getPostQuery,
+} from "/core/api/graphql"
 
 export const usePostsLoading = (cb, limit) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -28,4 +34,11 @@ export const usePostsLoading = (cb, limit) => {
         }
     }
     return [fn, isLoading, error]
+}
+
+export const usePortfolioLoading = id => {
+    const { data, error } = useSWR(process.env.GRAPHQL_URL + "/" + id, () =>
+        fetcher(process.env.GRAPHQL_URL, { id }, getPostQuery(id))
+    )
+    return { data: data?.data, error }
 }
