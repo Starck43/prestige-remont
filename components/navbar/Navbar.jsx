@@ -1,8 +1,8 @@
-import React from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import Stack from "@mui/material/Stack"
-import { NavLogo } from "./NavLogo"
+import Image from "next/image"
+import DATA from "/core/constants"
 
 export const Navbar = ({ nav }) => {
     const router = useRouter()
@@ -17,17 +17,13 @@ export const Navbar = ({ nav }) => {
                     mt: 2,
                 }}
             >
-                <NavLogo />
+                <Image src={DATA.logo} alt={DATA.siteName} width={100} height={100} className="logo" />
 
                 <div className={"navbar-items centered"}>
-                    {nav?.map(node => (
+                    {nav?.map((node) => (
                         <Link
                             key={node.databaseId}
-                            href={
-                                router.pathname === "/"
-                                    ? "/#" + node.path.replace(/^\/|\/$/g, "")
-                                    : node.path
-                            }
+                            href={router.pathname === "/" ? "/#" + node.path.replace(/^\/|\/$/g, "") : node.path}
                         >
                             {node.label}
                         </Link>

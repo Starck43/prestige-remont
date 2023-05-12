@@ -46,7 +46,7 @@ module.exports = withBundleAnalyzer({
     },
     async headers() {
         return [
-            {
+            /*            {
                 source: "/fonts/Montserrat-Regular.woff2",
                 headers: [
                     {
@@ -54,16 +54,7 @@ module.exports = withBundleAnalyzer({
                         value: "public, max-age=31536000, immutable",
                     },
                 ],
-            },
-            {
-                source: "/fonts/Montserrat-Bold.woff2",
-                headers: [
-                    {
-                        key: "Cache-Control",
-                        value: "public, max-age=31536000, immutable",
-                    },
-                ],
-            },
+            },*/
         ]
     },
 })

@@ -1,9 +1,9 @@
 # Ignore artifacts:
+backend
+resources
 build
+.next
 node_modules
-reports
-storybook-static
-.loki
 *.html
 *.sass
 *.scss
