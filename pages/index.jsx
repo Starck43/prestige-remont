@@ -31,5 +31,6 @@ export async function getStaticProps({ preview = false }) {
 
     return {
         props: { nav, pages, preview },
+        revalidate: 60 * 60 * 24,
     }
 }
