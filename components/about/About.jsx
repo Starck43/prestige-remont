@@ -16,26 +16,19 @@ export const About = ({ title, slug, content, featuredImage }) => {
     let srcSet = srcSet2Array(image?.srcSet)
 
     /*    const remoteLoader = ({ src, width }) => {
-        let curKey = Object.keys(srcSet).find(key => key === width + "w")
-        return srcSet[curKey] || src
-    }*/
+		let curKey = Object.keys(srcSet).find(key => key === width + "w")
+		return srcSet[curKey] || src
+	}*/
 
     return (
-        <FadeSection
-            id={slug}
-            ref={observer}
-            inView={inView}
-            animationTime={700}
-            translate={[0, "20vh"]}
-        >
+        <FadeSection id={slug} ref={observer} inView={inView} animationTime={700} translate={[0, "20vh"]}>
             <Container>
                 <article className="content">
-                    {
-                        <AnimationText Tag="h2" show={inView}>
-                            {title}
-                        </AnimationText>
-                    }
-                    {parse(content)}
+                    <AnimationText Tag="h2" show={inView}>
+                        {title}
+                    </AnimationText>
+                    <div className="text">{parse(content)}</div>
+
                     <div className="img-wrapper">
                         {image?.sourceUrl && (
                             <Image

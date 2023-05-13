@@ -20,14 +20,16 @@
 		//list-style-type: none;
 		display: flex;
 		align-items: flex-start;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		font-size: 1.2rem;
 
 		&::before {
 			content: counter(li);
 			counter-increment: li;
 			position: relative;
-			display: block;
+			display: flex;
+			justify-content: flex-end;
+			top: -0.3rem;
 			min-width: 3rem;
 			margin-right: 0.75rem;
 			text-align: right;
