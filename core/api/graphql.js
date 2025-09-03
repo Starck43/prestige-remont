@@ -22,6 +22,7 @@ export const getAllPostsQuery = () => `query allPosts {
             title
             slug
             excerpt
+            content
             uri
             featuredImage {
               node {

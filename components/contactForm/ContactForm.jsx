@@ -1,4 +1,4 @@
-import { useState } from "react"
+import {useState} from "react"
 
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/Button"
@@ -10,12 +10,12 @@ import DialogTitle from "@mui/material/DialogTitle"
 import CircularProgress from "@mui/material/CircularProgress"
 import Alert from "@mui/material/Alert"
 
-import { Input, TextArea } from "/components/UI/input"
-import { sendPostMessage } from "/core/api/api"
+import {Input, TextArea} from "/components/UI/input"
+import {sendPostMessage} from "/core/api/api"
 
 import cls from "./ContactForm.module.sass"
 
-export const ContactForm = ({ open, onCloseHandler }) => {
+export const ContactForm = ({open, onCloseHandler}) => {
     const [message, setMessage] = useState({
         name: undefined,
         email: undefined,
@@ -39,7 +39,7 @@ export const ContactForm = ({ open, onCloseHandler }) => {
         if (message.body?.length > 250) {
             errors.push("Сообщение должно быть не более 250-ти символов")
         }
-        console.log(message)
+
         const hasFilled = message.name && message.email && message.body
         if (!errors.length && hasFilled) {
             setValidationErrors([])
@@ -64,7 +64,7 @@ export const ContactForm = ({ open, onCloseHandler }) => {
     }
 
     const changeMessage = (field, value) => {
-        setMessage({ ...message, [field]: value })
+        setMessage({...message, [field]: value})
     }
 
     return (
@@ -74,7 +74,7 @@ export const ContactForm = ({ open, onCloseHandler }) => {
             aria-labelledby="modal-form-title"
             aria-describedby="modal-form-description"
             fullWidth
-            maxWidth={"tablet"}
+            maxWidth={"md"}
             className={cls.dialog}
         >
             <DialogTitleWithClose
@@ -85,7 +85,7 @@ export const ContactForm = ({ open, onCloseHandler }) => {
             </DialogTitleWithClose>
             <DialogContent
                 dividers
-                sx={{ position: "relative" }}
+                sx={{position: "relative"}}
                 className="flex-column gap-1"
             >
                 <Input
@@ -117,19 +117,19 @@ export const ContactForm = ({ open, onCloseHandler }) => {
                         {validationErrors.length === 1
                             ? validationErrors[0]
                             : validationErrors.map(error => (
-                                  <li key={error}>{error}</li>
-                              ))}
+                                <li key={error}>{error}</li>
+                            ))}
                     </Alert>
                 ) : (
                     data && <Alert severity={data.status}>{data.message}</Alert>
                 )}
                 {isLoading && (
                     <span className={cls.loader}>
-                        <CircularProgress />
+                        <CircularProgress/>
                     </span>
                 )}
             </DialogContent>
-            <DialogActions sx={{ my: 1, mx: 2 }}>
+            <DialogActions sx={{my: 1, mx: 2}}>
                 {!data && (
                     <Button
                         autoFocus
@@ -148,7 +148,7 @@ export const ContactForm = ({ open, onCloseHandler }) => {
 }
 
 const DialogTitleWithClose = props => {
-    const { children, onClose, ...other } = props
+    const {children, onClose, ...other} = props
 
     return (
         <DialogTitle
@@ -169,7 +169,7 @@ const DialogTitleWithClose = props => {
                         minWidth: "unset",
                     }}
                 >
-                    <CloseIcon />
+                    <CloseIcon/>
                 </IconButton>
             ) : null}
         </DialogTitle>
